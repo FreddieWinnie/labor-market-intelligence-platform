@@ -1,0 +1,349 @@
+{
+    "mean": 81493.19,
+    "results": [
+        {
+            "company": {
+                "__CLASS__": "Adzuna::API::Response::Company",
+                "display_name": "Gopuff"
+            },
+            "longitude": -77.020224,
+            "location": {
+                "display_name": "Washington, D.C., US",
+                "area": [
+                    "US",
+                    "Washington, D.C."
+                ],
+                "__CLASS__": "Adzuna::API::Response::Location"
+            },
+            "latitude": 38.891581,
+            "salary_min": 74052.82,
+            "redirect_url": "https://www.adzuna.com/land/ad/5847167037?se=xvRWR8yb8RG___HdWKxdFg&utm_medium=api&utm_source=933b3abe&v=7FDC74B8503F60C82BD1178FB138FC8374F578EA",
+            "description": "Do more than make ends meet. Deliver with Gopuff and get paid to deliver what your neighbors need from a Gopuff facility near you! With one centralized pickup location and smaller delivery zones, Gopuff makes earning effortless. It's simple: deliver from a facility near you straight to the customer! You\u2019ll be delivering everyday essentials, from cleaning supplies, home needs and OTC medications to food, drinks and more. Sign up to be a Gopuff Delivery Partner today, for Car or Bike Deliveries, \u2026",
+            "created": "2026-08-18T15:41:34Z",
+            "title": "Gopuff Delivery Bike Courier Partner - No Restaurants",
+            "id": "5847167037",
+            "adref": "eyJhbGciOiJIUzI1NiJ9.eyJzIjoieHZSV1I4eWI4UkdfX19IZFdLeGRGZyIsImkiOiI1ODQ3MTY3MDM3In0.2JDr3XQY1YrDBOH1uSWyb_XIuV0-33THhsOuKezTnHY",
+            "contract_time": "part_time",
+            "category": {
+                "tag": "travel-jobs",
+                "__CLASS__": "Adzuna::API::Response::Category",
+                "label": "Travel Jobs"
+            },
+            "salary_max": 74052.82,
+            "contract_type": "contract",
+            "salary_is_predicted": "1",
+            "__CLASS__": "Adzuna::API::Response::Job"
+        },
+        {
+            "__CLASS__": "Adzuna::API::Response::Job",
+            "salary_is_predicted": "1",
+            "contract_time": "full_time",
+            "adref": "eyJhbGciOiJIUzI1NiJ9.eyJzIjoieHZSV1I4eWI4UkdfX19IZFdLeGRGZyIsImkiOiI1ODQ1NDA5MTY2In0.AZJXWFkOP6e6ab3mKaqR62-KOw1FX7BSD-EUE73nMgU",
+            "id": "5845409166",
+            "title": "CDL A Delivery Truck Driver",
+            "salary_max": 81133.57,
+            "category": {
+                "tag": "logistics-warehouse-jobs",
+                "__CLASS__": "Adzuna::API::Response::Category",
+                "label": "Logistics & Warehouse Jobs"
+            },
+            "redirect_url": "https://www.adzuna.com/land/ad/5845409166?se=xvRWR8yb8RG___HdWKxdFg&utm_medium=api&utm_source=933b3abe&v=79D78BE49ACC0FF8E20FB5E3FB22DE3D47ED1DA4",
+            "salary_min": 81133.57,
+            "created": "2026-08-17T15:50:35Z",
+            "description": "Take your CDL-A career further in Frankfort Kentucky! Our drivers work hard to move, supply, and provide for America's favorite brands. Being reliable and dedicated to safety has defined our success as an industry leader for 130 years. Join McLane and discover the driving difference-we provide you with industry-leading pay, strong and secure client relationships, and get you home safely and more often. That's why our drivers build long-lasting careers with us. Benefits you can count on: Pay Rat\u2026",
+            "company": {
+                "__CLASS__": "Adzuna::API::Response::Company",
+                "display_name": "Mclane Company, Inc."
+            },
+            "latitude": 38.557965,
+            "location": {
+                "__CLASS__": "Adzuna::API::Response::Location",
+                "display_name": "Campbellsburg, Henry County",
+                "area": [
+                    "US",
+                    "Kentucky",
+                    "Henry County",
+                    "Campbellsburg"
+                ]
+            },
+            "longitude": -85.117393
+        },
+        {
+            "redirect_url": "https://www.adzuna.com/land/ad/5801403813?se=xvRWR8yb8RG___HdWKxdFg&utm_medium=api&utm_source=933b3abe&v=4CBEAC9DF660988C0EA90B98977FEBBFC63F3E44",
+            "salary_min": 69679.59,
+            "description": "$2,000 Completion Bonus  $3,000 in referral bonuses! Start the 2026\u20132027 school year strong with Epic Special Education Staffing. We\u2019re offering a $2,000 Completion Bonus for eligible clinicians and educators who commit to and complete their full school year assignment (30 hours/week), plus the opportunity to earn up to $3,000 in referral bonuses. Whether you're looking for a local or travel opportunity, we\u2019ll help you find the right fit where you can do your best work and make a difference eve\u2026",
+            "created": "2026-07-15T12:58:12Z",
+            "company": {
+                "display_name": "Epic Special Education Staffing",
+                "__CLASS__": "Adzuna::API::Response::Company"
+            },
+            "longitude": -87.424015,
+            "location": {
+                "__CLASS__": "Adzuna::API::Response::Location",
+                "area": [
+                    "US",
+                    "Indiana",
+                    "Lake County",
+                    "Griffith"
+                ],
+                "display_name": "Griffith, Lake County"
+            },
+            "latitude": 41.530183,
+            "salary_is_predicted": "1",
+            "__CLASS__": "Adzuna::API::Response::Job",
+            "id": "5801403813",
+            "adref": "eyJhbGciOiJIUzI1NiJ9.eyJzIjoieHZSV1I4eWI4UkdfX19IZFdLeGRGZyIsImkiOiI1ODAxNDAzODEzIn0.uSUN_FUqLoUQESahZCwiH54bmFHXr7AslsIPo0EuwM0",
+            "title": "Certified Occupational Therapist School 2026-2027 SY",
+            "contract_time": "full_time",
+            "category": {
+                "tag": "healthcare-nursing-jobs",
+                "__CLASS__": "Adzuna::API::Response::Category",
+                "label": "Healthcare & Nursing Jobs"
+            },
+            "salary_max": 69679.59
+        },
+        {
+            "__CLASS__": "Adzuna::API::Response::Job",
+            "contract_type": "contract",
+            "salary_is_predicted": "1",
+            "contract_time": "part_time",
+            "title": "Instacart Delivery Driver - Flexible Hours",
+            "id": "5828355861",
+            "adref": "eyJhbGciOiJIUzI1NiJ9.eyJpIjoiNTgyODM1NTg2MSIsInMiOiJ4dlJXUjh5YjhSR19fX0hkV0t4ZEZnIn0.YUvmqvKZAgN-5rO2n1MYLD1D8Kp9bWBbYD2-CldQXcU",
+            "salary_max": 88532.9,
+            "category": {
+                "label": "Hospitality & Catering Jobs",
+                "__CLASS__": "Adzuna::API::Response::Category",
+                "tag": "hospitality-catering-jobs"
+            },
+            "salary_min": 88532.9,
+            "redirect_url": "https://www.adzuna.com/land/ad/5828355861?se=xvRWR8yb8RG___HdWKxdFg&utm_medium=api&utm_source=933b3abe&v=D7C10EA834285EC652562CDA8DEED97239EF43CE",
+            "created": "2026-08-04T18:38:34Z",
+            "description": "FULL-SERVICE SHOPPER Start earning quickly with a flexible schedule Shopping with Instacart is more than grocery delivery. Shoppers help make our world go round. They make money, make moves, and make shopping lists come true. They make good time, make life easier, and make people\u2019s day. Shoppers make it all happen\u2014sign up now to help create a world where everyone has access to the food they love. As a full-service shopper, you\u2019ll receive orders through the Shopper app to shop from stores in you\u2026",
+            "company": {
+                "__CLASS__": "Adzuna::API::Response::Company",
+                "display_name": "Instacart Shoppers"
+            },
+            "latitude": 39.698578,
+            "location": {
+                "area": [
+                    "US",
+                    "Nevada",
+                    "Washoe County",
+                    "Cold Springs"
+                ],
+                "display_name": "Cold Springs, Washoe County",
+                "__CLASS__": "Adzuna::API::Response::Location"
+            },
+            "longitude": -119.960908
+        },
+        {
+            "company": {
+                "display_name": "Mclane Company, Inc.",
+                "__CLASS__": "Adzuna::API::Response::Company"
+            },
+            "longitude": -84.15582,
+            "latitude": 31.5783,
+            "location": {
+                "area": [
+                    "US",
+                    "Georgia",
+                    "Dougherty County",
+                    "Albany"
+                ],
+                "display_name": "Albany, Dougherty County",
+                "__CLASS__": "Adzuna::API::Response::Location"
+            },
+            "redirect_url": "https://www.adzuna.com/land/ad/5827461477?se=xvRWR8yb8RG___HdWKxdFg&utm_medium=api&utm_source=933b3abe&v=16C64609823036E218480C78A2A7C439699C31D9",
+            "salary_min": 77923.66,
+            "description": "Take your CDL-A career further! Our drivers work hard to move, supply, and provide for America's favorite brands. Being reliable and dedicated to safety has defined our success as an industry leader for 130 years. Join McLane and discover the driving difference-we provide you with industry-leading pay, strong and secure client relationships, and get you home safely and more often. That's why our drivers build long-lasting careers with us. Benefits you can count on: Pay Rate: Drivers make $70,00\u2026",
+            "created": "2026-08-04T02:23:22Z",
+            "adref": "eyJhbGciOiJIUzI1NiJ9.eyJpIjoiNTgyNzQ2MTQ3NyIsInMiOiJ4dlJXUjh5YjhSR19fX0hkV0t4ZEZnIn0.EbhASWz3hcPG2txD6Z23pjA8oL_vaYt0zlBn82Kj84A",
+            "id": "5827461477",
+            "title": "CDL A Delivery Driver",
+            "contract_time": "full_time",
+            "category": {
+                "label": "Logistics & Warehouse Jobs",
+                "__CLASS__": "Adzuna::API::Response::Category",
+                "tag": "logistics-warehouse-jobs"
+            },
+            "salary_max": 77923.66,
+            "salary_is_predicted": "1",
+            "__CLASS__": "Adzuna::API::Response::Job"
+        },
+        {
+            "category": {
+                "label": "Healthcare & Nursing Jobs",
+                "tag": "healthcare-nursing-jobs",
+                "__CLASS__": "Adzuna::API::Response::Category"
+            },
+            "salary_max": 60834.71,
+            "title": "Certified Occupational Therapist School 2026-2027 SY",
+            "id": "5828353087",
+            "adref": "eyJhbGciOiJIUzI1NiJ9.eyJzIjoieHZSV1I4eWI4UkdfX19IZFdLeGRGZyIsImkiOiI1ODI4MzUzMDg3In0.IRGWBmZ8SY5KXJhrxLnLZB6jpqTOM1acPAzkAqn3HZw",
+            "contract_time": "full_time",
+            "salary_is_predicted": "1",
+            "__CLASS__": "Adzuna::API::Response::Job",
+            "longitude": -75.689077,
+            "latitude": 39.779423,
+            "location": {
+                "area": [
+                    "US",
+                    "Delaware",
+                    "New Castle County",
+                    "Hockessin"
+                ],
+                "display_name": "Hockessin, New Castle County",
+                "__CLASS__": "Adzuna::API::Response::Location"
+            },
+            "company": {
+                "display_name": "Epic Special Education Staffing",
+                "__CLASS__": "Adzuna::API::Response::Company"
+            },
+            "description": "$2,000 Completion Bonus  $3,000 in referral bonuses! Start the 2026\u20132027 school year strong with Epic Special Education Staffing. We\u2019re offering a $2,000 Completion Bonus for eligible clinicians and educators who commit to and complete their full school year assignment (30 hours/week), plus the opportunity to earn up to $3,000 in referral bonuses. Whether you're looking for a local or travel opportunity, we\u2019ll help you find the right fit where you can do your best work and make a difference eve\u2026",
+            "created": "2026-08-04T18:13:40Z",
+            "salary_min": 60834.71,
+            "redirect_url": "https://www.adzuna.com/land/ad/5828353087?se=xvRWR8yb8RG___HdWKxdFg&utm_medium=api&utm_source=933b3abe&v=99968FCFCC4ED58B17A0887B3D932E3E7EA5A44E"
+        },
+        {
+            "__CLASS__": "Adzuna::API::Response::Job",
+            "contract_type": "contract",
+            "salary_is_predicted": "1",
+            "salary_max": 65277.2,
+            "category": {
+                "tag": "hospitality-catering-jobs",
+                "__CLASS__": "Adzuna::API::Response::Category",
+                "label": "Hospitality & Catering Jobs"
+            },
+            "contract_time": "part_time",
+            "id": "5772461860",
+            "adref": "eyJhbGciOiJIUzI1NiJ9.eyJpIjoiNTc3MjQ2MTg2MCIsInMiOiJ4dlJXUjh5YjhSR19fX0hkV0t4ZEZnIn0.KME2T0uvZ8gWcgJiCzaa0EVjjjq9eVtyTGCSk011MmQ",
+            "title": "Shop and Deliver - No Experience Required",
+            "created": "2026-06-22T06:30:41Z",
+            "description": "FULL-SERVICE SHOPPER Start earning quickly with a flexible schedule Shopping with Instacart is more than grocery delivery. Shoppers help make our world go round. They make money, make moves, and make shopping lists come true. They make good time, make life easier, and make people\u2019s day. Shoppers make it all happen\u2014sign up now to help create a world where everyone has access to the food they love. As a full-service shopper, you\u2019ll receive orders through the Shopper app to shop from stores in you\u2026",
+            "redirect_url": "https://www.adzuna.com/land/ad/5772461860?se=xvRWR8yb8RG___HdWKxdFg&utm_medium=api&utm_source=933b3abe&v=A997DA806D3CB64BA305340ED7C0A8F0E4480B70",
+            "salary_min": 65277.2,
+            "latitude": 41.812037,
+            "location": {
+                "__CLASS__": "Adzuna::API::Response::Location",
+                "display_name": "Jeffersonville, Sullivan County",
+                "area": [
+                    "US",
+                    "New York",
+                    "Sullivan County",
+                    "Jeffersonville"
+                ]
+            },
+            "longitude": -74.889168,
+            "company": {
+                "display_name": "Instacart Shoppers",
+                "__CLASS__": "Adzuna::API::Response::Company"
+            }
+        },
+        {
+            "redirect_url": "https://www.adzuna.com/land/ad/5828352843?se=xvRWR8yb8RG___HdWKxdFg&utm_medium=api&utm_source=933b3abe&v=3545BBE669F43585D9ECCE0DC69A85BF42572681",
+            "salary_min": 52191.39,
+            "description": "Your future role at a glance Location: Milwaukee, WI Facility: Columbia Saint Mary's Hospital Department: MedSurg Oncology Schedule: Night Shift | Full-Time Life at Ascension: Where purpose meets opportunity Ascension is a leading nonprofit Catholic health system with a culture and associate experience grounded in service, growth, care and connection. We empower our 97,000 associates to bring their skills and expertise every day to reimagining healthcare, together. Recognized as one of the Best\u2026",
+            "created": "2026-08-04T18:10:49Z",
+            "company": {
+                "__CLASS__": "Adzuna::API::Response::Company",
+                "display_name": "Ascension"
+            },
+            "longitude": -87.882519,
+            "latitude": 43.395537,
+            "location": {
+                "display_name": "Port Washington, Ozaukee County",
+                "area": [
+                    "US",
+                    "Wisconsin",
+                    "Ozaukee County",
+                    "Port Washington"
+                ],
+                "__CLASS__": "Adzuna::API::Response::Location"
+            },
+            "salary_is_predicted": "1",
+            "__CLASS__": "Adzuna::API::Response::Job",
+            "adref": "eyJhbGciOiJIUzI1NiJ9.eyJpIjoiNTgyODM1Mjg0MyIsInMiOiJ4dlJXUjh5YjhSR19fX0hkV0t4ZEZnIn0.GnrYR5loyMP_IFGronCcMJhDxK4z3eD9TlcuEU2MjaM",
+            "id": "5828352843",
+            "title": "Registered Nurse Clinical Lead MedSurg Oncology",
+            "contract_time": "full_time",
+            "category": {
+                "__CLASS__": "Adzuna::API::Response::Category",
+                "tag": "healthcare-nursing-jobs",
+                "label": "Healthcare & Nursing Jobs"
+            },
+            "salary_max": 52191.39
+        },
+        {
+            "redirect_url": "https://www.adzuna.com/land/ad/5756671288?se=xvRWR8yb8RG___HdWKxdFg&utm_medium=api&utm_source=933b3abe&v=861D49FA14F9A2ECB40945ED14B03A91A0F14B5D",
+            "salary_min": 48799.3,
+            "created": "2026-06-08T18:41:36Z",
+            "description": "Registered Nurse Career Opportunity - Now offering a $10,000 sign on bonus for FT Night RNs! Encompass Health: Where Nursing Meets Heart, Home, and Healing Are you seeking a nursing career deeply rooted in purpose, close to your heart and home? Encompass Health offers a transformative journey where your expertise as a Registered Nurse becomes an integral part of patients' recoveries. Picture the impact of providing individualized, compassionate care that guides patients along their path to heal\u2026",
+            "company": {
+                "__CLASS__": "Adzuna::API::Response::Company",
+                "display_name": "Encompass Health Rehabilitation Hospital of Lower Providence"
+            },
+            "location": {
+                "area": [
+                    "US",
+                    "Pennsylvania",
+                    "Delaware County",
+                    "Swarthmore"
+                ],
+                "display_name": "Swarthmore, Delaware County",
+                "__CLASS__": "Adzuna::API::Response::Location"
+            },
+            "latitude": 39.897253,
+            "longitude": -75.345177,
+            "__CLASS__": "Adzuna::API::Response::Job",
+            "salary_is_predicted": "1",
+            "contract_time": "full_time",
+            "id": "5756671288",
+            "adref": "eyJhbGciOiJIUzI1NiJ9.eyJzIjoieHZSV1I4eWI4UkdfX19IZFdLeGRGZyIsImkiOiI1NzU2NjcxMjg4In0.gILesFOiGeQbQkfnRca8xVr0iFeAqf6OFv3hSdKrdeM",
+            "title": "Registered Nurse",
+            "salary_max": 48799.3,
+            "category": {
+                "label": "Healthcare & Nursing Jobs",
+                "__CLASS__": "Adzuna::API::Response::Category",
+                "tag": "healthcare-nursing-jobs"
+            }
+        },
+        {
+            "company": {
+                "__CLASS__": "Adzuna::API::Response::Company",
+                "display_name": "Instacart Shoppers"
+            },
+            "longitude": -77.15382,
+            "latitude": 38.81838,
+            "location": {
+                "__CLASS__": "Adzuna::API::Response::Location",
+                "display_name": "Lincolnia, Fairfax County",
+                "area": [
+                    "US",
+                    "Virginia",
+                    "Fairfax County",
+                    "Lincolnia"
+                ]
+            },
+            "redirect_url": "https://www.adzuna.com/land/ad/5817431702?se=xvRWR8yb8RG___HdWKxdFg&utm_medium=api&utm_source=933b3abe&v=9C66B977614AF1B21D425A050575702702741B4D",
+            "salary_min": 77322.2,
+            "description": "FULL-SERVICE SHOPPER Start earning quickly with a flexible schedule Shopping with Instacart is more than grocery delivery. Shoppers help make our world go round. They make money, make moves, and make shopping lists come true. They make good time, make life easier, and make people\u2019s day. Shoppers make it all happen\u2014sign up now to help create a world where everyone has access to the food they love. As a full-service shopper, you\u2019ll receive orders through the Shopper app to shop from stores in you\u2026",
+            "created": "2026-07-27T09:46:59Z",
+            "id": "5817431702",
+            "adref": "eyJhbGciOiJIUzI1NiJ9.eyJzIjoieHZSV1I4eWI4UkdfX19IZFdLeGRGZyIsImkiOiI1ODE3NDMxNzAyIn0.lfNv3BIePZwnWqbyYnvCHm0CCcB-TNtQJC2nzGjbJd0",
+            "title": "Instacart Shopper - Delivery Driver",
+            "contract_time": "part_time",
+            "category": {
+                "label": "Hospitality & Catering Jobs",
+                "__CLASS__": "Adzuna::API::Response::Category",
+                "tag": "hospitality-catering-jobs"
+            },
+            "salary_max": 77322.2,
+            "contract_type": "contract",
+            "salary_is_predicted": "1",
+            "__CLASS__": "Adzuna::API::Response::Job"
+        }
+    ],
+    "__CLASS__": "Adzuna::API::Response::JobSearchResults",
+    "count": 6266415
+}
