@@ -33,3 +33,21 @@ class AdzunaClient:
         response = self.session.get(endpoint, params=params)
         response.raise_for_status()
         return response.json()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
