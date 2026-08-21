@@ -1,14 +1,11 @@
-import os
-from dotenv import load_dotenv
+from config import Config
 import requests
-
-load_dotenv()
 
 class AdzunaClient:
     BASE_URL = "https://api.adzuna.com/v1/api/jobs"
     def __init__(self):
-        self.app_id = os.getenv("ADZUNA_APP_ID")
-        self.app_key = os.getenv("ADZUNA_APP_KEY")
+        self.app_id = Config.AZDUNA_APP_ID
+        self.app_key = Config.AZDUNA_APP_KEY
 
         if not self.app_id or not self.app_key:
             raise ValueError( 
