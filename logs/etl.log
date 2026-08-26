@@ -1,0 +1,32 @@
+2026-08-25 11:09:32,577 | INFO | etl.validator | Validated 10 of 10 job records.
+2026-08-25 11:14:01,490 | INFO | etl.validator | Validated 10 of 10 job records.
+2026-08-25 11:14:01,492 | WARNING | etl.validator | Job skipped because 'title' is missing.
+2026-08-25 11:14:01,493 | INFO | etl.validator | Validated 9 of 10 job records.
+2026-08-25 15:53:24,785 | INFO | etl.validator | Validated 20 of 20 job records.
+2026-08-25 15:53:24,786 | INFO | etl.transformer | Extracted 15 unique companies.
+2026-08-25 15:54:58,367 | INFO | etl.validator | Validated 20 of 20 job records.
+2026-08-25 15:54:58,368 | INFO | etl.transformer | Extracted 15 unique companies.
+2026-08-26 15:46:00,299 | INFO | etl.validator | Validated 20 of 20 job records.
+2026-08-26 15:46:00,301 | INFO | etl.transformer | Extracted 16 unique companies.
+2026-08-26 15:46:00,301 | INFO | etl.transformer | Extracted 19 unique locations.
+2026-08-26 15:55:45,557 | INFO | etl.validator | Validated 20 of 20 job records.
+2026-08-26 15:55:45,557 | INFO | etl.transformer | Extracted 16 unique companies.
+2026-08-26 15:55:45,558 | INFO | etl.transformer | Extracted 19 unique locations.
+2026-08-26 15:58:17,270 | INFO | etl.validator | Validated 20 of 20 job records.
+2026-08-26 15:58:17,271 | INFO | etl.transformer | Extracted 17 unique companies.
+2026-08-26 15:58:17,271 | INFO | etl.transformer | Extracted 20 unique locations.
+2026-08-26 15:58:51,781 | INFO | etl.validator | Validated 20 of 20 job records.
+2026-08-26 15:58:51,782 | INFO | etl.transformer | Extracted 17 unique companies.
+2026-08-26 15:58:51,782 | INFO | etl.transformer | Extracted 20 unique locations.
+2026-08-26 15:58:51,783 | INFO | etl.transformer | Extracted 5 unique categories.
+2026-08-26 16:02:57,155 | INFO | etl.validator | Validated 20 of 20 job records.
+2026-08-26 16:02:57,156 | INFO | etl.transformer | Extracted 17 unique companies.
+2026-08-26 16:02:57,157 | INFO | etl.transformer | Extracted 20 unique locations.
+2026-08-26 16:02:57,157 | INFO | etl.transformer | Extracted 5 unique categories.
+2026-08-26 16:02:57,160 | INFO | etl.transformer | Extracted 20 unique job titles.
+2026-08-26 16:03:27,759 | INFO | etl.validator | Validated 20 of 20 job records.
+2026-08-26 16:03:27,760 | INFO | etl.transformer | Extracted 17 unique companies.
+2026-08-26 16:03:27,760 | INFO | etl.transformer | Extracted 20 unique locations.
+2026-08-26 16:03:27,760 | INFO | etl.transformer | Extracted 5 unique categories.
+2026-08-26 16:03:27,762 | INFO | etl.transformer | Extracted 20 unique job titles.
+2026-08-26 16:03:27,763 | INFO | etl.transformer | Transformation completed successfully.

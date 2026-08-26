@@ -4,8 +4,8 @@ import os
 load_dotenv()
 
 class Config:
-    AZDUNA_APP_ID = os.getenv("ADZUNA_APP_ID")
-    AZDUNA_APP_KEY = os.getenv("ADZUNA_APP_KEY")
+    ADZUNA_APP_ID = os.getenv("ADZUNA_APP_ID")
+    ADZUNA_APP_KEY = os.getenv("ADZUNA_APP_KEY")
     DB_HOST = os.getenv("DB_HOST")
     DB_PORT = int(os.getenv("DB_PORT", 3306))
     DB_NAME = os.getenv("DB_NAME")

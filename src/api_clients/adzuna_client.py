@@ -4,8 +4,8 @@ import requests
 class AdzunaClient:
     BASE_URL = "https://api.adzuna.com/v1/api/jobs"
     def __init__(self):
-        self.app_id = Config.AZDUNA_APP_ID
-        self.app_key = Config.AZDUNA_APP_KEY
+        self.app_id = Config.ADZUNA_APP_ID
+        self.app_key = Config.ADZUNA_APP_KEY
 
         if not self.app_id or not self.app_key:
             raise ValueError( 
@@ -18,7 +18,7 @@ class AdzunaClient:
         print("Adzuna Client initialized successfully.")
         print(f"App ID: {self.app_id}")"""
 
-    def search_jobs(self, country="us", page=1, results_per_page=10):
+    def search_jobs(self, country: str = "us", page: int = 1, results_per_page: int = 10):
         endpoint = (
             f"{self.BASE_URL}/{country}/search/{page}"
                    )
