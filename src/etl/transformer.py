@@ -1,8 +1,6 @@
 from utils.logger import get_logger
 from datetime import datetime
 
-#AA64A2JSUdgFlnr078cPDpCaWaRWf5qg5VC0l49Pgw2j7zugK49qJQQJ99CHACAAAAAM2dH1AAASAZDO1SvY
-
 class Transformer:
     def __init__(self):
         self.logger = get_logger(__name__)
