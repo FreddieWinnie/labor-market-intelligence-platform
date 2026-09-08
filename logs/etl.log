@@ -30,3 +30,1903 @@
 2026-08-26 16:03:27,760 | INFO | etl.transformer | Extracted 5 unique categories.
 2026-08-26 16:03:27,762 | INFO | etl.transformer | Extracted 20 unique job titles.
 2026-08-26 16:03:27,763 | INFO | etl.transformer | Transformation completed successfully.
+2026-09-08 13:05:06,422 | INFO | etl.validator | Validated 20 of 20 job records.
+2026-09-08 13:05:06,429 | INFO | etl.transformer | Extracted 19 unique companies.
+2026-09-08 13:05:06,430 | INFO | etl.transformer | Extracted 20 unique locations.
+2026-09-08 13:05:06,430 | INFO | etl.transformer | Extracted 5 unique categories.
+2026-09-08 13:05:06,433 | INFO | etl.transformer | Extracted 20 unique job titles.
+2026-09-08 13:05:06,434 | INFO | etl.transformer | Transformation completed successfully.
+2026-09-08 13:06:09,848 | INFO | etl.validator | Validated 20 of 20 job records.
+2026-09-08 13:06:09,848 | INFO | etl.transformer | Extracted 19 unique companies.
+2026-09-08 13:06:09,849 | INFO | etl.transformer | Extracted 20 unique locations.
+2026-09-08 13:06:09,849 | INFO | etl.transformer | Extracted 5 unique categories.
+2026-09-08 13:06:09,851 | INFO | etl.transformer | Extracted 20 unique job titles.
+2026-09-08 13:06:09,851 | INFO | etl.transformer | Transformation completed successfully.
+2026-09-08 13:14:07,940 | INFO | etl.validator | Validated 20 of 20 job records.
+2026-09-08 13:14:07,940 | INFO | etl.transformer | Extracted 19 unique companies.
+2026-09-08 13:14:07,941 | INFO | etl.transformer | Extracted 20 unique locations.
+2026-09-08 13:14:07,941 | INFO | etl.transformer | Extracted 5 unique categories.
+2026-09-08 13:14:07,943 | INFO | etl.transformer | Extracted 20 unique job titles.
+2026-09-08 13:14:07,943 | INFO | etl.transformer | Transformation completed successfully.
+2026-09-08 13:14:07,943 | INFO | etl.loader | Starting data loading process.
+2026-09-08 13:14:08,023 | INFO | etl.loader | Inserted new source: Adzuna
+2026-09-08 13:14:08,042 | INFO | etl.loader | Inserted 19 new company(s).
+2026-09-08 13:14:08,060 | INFO | etl.loader | Inserted 20 new locations
+2026-09-08 13:14:08,069 | ERROR | etl.loader | Database loading failed: (raised as a result of Query-invoked autoflush; consider using a session.no_autoflush block if this flush is occurring prematurely)
+(pymysql.err.IntegrityError) (1062, "Duplicate entry 'US' for key 'locations.country'")
+[SQL: INSERT INTO locations (country, state, county, city, display_name, latitude, longitude) VALUES (%(country)s, %(state)s, %(county)s, %(city)s, %(display_name)s, %(latitude)s, %(longitude)s)]
+[parameters: {'country': 'US', 'state': 'Minnesota', 'county': 'Marshall County', 'city': 'Warren', 'display_name': 'Warren, Marshall County', 'latitude': None, 'longitude': None}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+Traceback (most recent call last):
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\cursors.py", line 159, in execute
+    result = self._query(query)
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\cursors.py", line 330, in _query
+    conn.query(q)
+    ~~~~~~~~~~^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\connections.py", line 582, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+                          ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\connections.py", line 847, in _read_query_result
+    result.read()
+    ~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\connections.py", line 1245, in read
+    first_packet = self.connection._read_packet()
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\connections.py", line 803, in _read_packet
+    packet.raise_for_error()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\err.py", line 154, in raise_mysql_exception
+    raise errorclass(errno, errval, sqlstate=sqlstate)
+pymysql.err.IntegrityError: (1062, "Duplicate entry 'US' for key 'locations.country'")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Portfolio\labor-market-intelligence-platform\src\etl\loader.py", line 24, in load
+    self._load_categories(session, transformed_data["categories"])
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Portfolio\labor-market-intelligence-platform\src\etl\loader.py", line 138, in _load_categories
+    for category in session.scalars(
+                    ~~~~~~~~~~~~~~~^
+        select(Category)
+        ^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\session.py", line 2481, in scalars
+    return self._execute_internal(
+           ~~~~~~~~~~~~~~~~~~~~~~^
+        statement,
+        ^^^^^^^^^^
+    ...<4 lines>...
+        **kw,
+        ^^^^^
+    ).scalars()
+    ^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\session.py", line 2250, in _execute_internal
+    ) = compile_state_cls.orm_pre_session_exec(
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self,
+        ^^^^^
+    ...<4 lines>...
+        False,
+        ^^^^^^
+    )
+    ^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\context.py", line 577, in orm_pre_session_exec
+    session._autoflush()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\session.py", line 3073, in _autoflush
+    raise e.with_traceback(sys.exc_info()[2])
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\session.py", line 3062, in _autoflush
+    self.flush()
+    ~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\session.py", line 4353, in flush
+    self._flush(objects)
+    ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\session.py", line 4488, in _flush
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 122, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\session.py", line 4449, in _flush
+    flush_context.execute()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\unitofwork.py", line 465, in execute
+    rec.execute(self)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\unitofwork.py", line 641, in execute
+    util.preloaded.orm_persistence.save_obj(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self.mapper,
+        ^^^^^^^^^^^^
+        uow.states_for_mapper_hierarchy(self.mapper, False, False),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        uow,
+        ^^^^
+    )
+    ^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\persistence.py", line 94, in save_obj
+    _emit_insert_statements(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        base_mapper,
+        ^^^^^^^^^^^^
+    ...<3 lines>...
+        insert,
+        ^^^^^^^
+    )
+    ^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\persistence.py", line 1234, in _emit_insert_statements
+    result = connection.execute(
+        statement,
+        params,
+        execution_options=execution_options,
+    )
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1421, in execute
+    return meth(
+        self,
+        distilled_parameters,
+        execution_options or NO_OPTIONS,
+    )
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\sql\elements.py", line 526, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self, distilled_params, execution_options
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1643, in _execute_clauseelement
+    ret = self._execute_context(
+        dialect,
+    ...<8 lines>...
+        cache_hit=cache_hit,
+    )
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1848, in _execute_context
+    return self._exec_single_context(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        dialect, context, statement, parameters
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1988, in _exec_single_context
+    self._handle_dbapi_exception(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        e, str_statement, effective_parameters, cursor, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 2365, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\cursors.py", line 159, in execute
+    result = self._query(query)
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\cursors.py", line 330, in _query
+    conn.query(q)
+    ~~~~~~~~~~^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\connections.py", line 582, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+                          ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\connections.py", line 847, in _read_query_result
+    result.read()
+    ~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\connections.py", line 1245, in read
+    first_packet = self.connection._read_packet()
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\connections.py", line 803, in _read_packet
+    packet.raise_for_error()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\err.py", line 154, in raise_mysql_exception
+    raise errorclass(errno, errval, sqlstate=sqlstate)
+sqlalchemy.exc.IntegrityError: (raised as a result of Query-invoked autoflush; consider using a session.no_autoflush block if this flush is occurring prematurely)
+(pymysql.err.IntegrityError) (1062, "Duplicate entry 'US' for key 'locations.country'")
+[SQL: INSERT INTO locations (country, state, county, city, display_name, latitude, longitude) VALUES (%(country)s, %(state)s, %(county)s, %(city)s, %(display_name)s, %(latitude)s, %(longitude)s)]
+[parameters: {'country': 'US', 'state': 'Minnesota', 'county': 'Marshall County', 'city': 'Warren', 'display_name': 'Warren, Marshall County', 'latitude': None, 'longitude': None}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2026-09-08 13:14:46,926 | INFO | etl.validator | Validated 20 of 20 job records.
+2026-09-08 13:14:46,927 | INFO | etl.transformer | Extracted 19 unique companies.
+2026-09-08 13:14:46,927 | INFO | etl.transformer | Extracted 20 unique locations.
+2026-09-08 13:14:46,927 | INFO | etl.transformer | Extracted 5 unique categories.
+2026-09-08 13:14:46,931 | INFO | etl.transformer | Extracted 20 unique job titles.
+2026-09-08 13:14:46,932 | INFO | etl.transformer | Transformation completed successfully.
+2026-09-08 13:14:46,932 | INFO | etl.loader | Starting data loading process.
+2026-09-08 13:14:46,975 | INFO | etl.loader | Inserted new source: Adzuna
+2026-09-08 13:14:46,982 | INFO | etl.loader | Inserted 19 new company(s).
+2026-09-08 13:14:46,995 | INFO | etl.loader | Inserted 20 new locations
+2026-09-08 13:14:47,003 | ERROR | etl.loader | Database loading failed: (raised as a result of Query-invoked autoflush; consider using a session.no_autoflush block if this flush is occurring prematurely)
+(pymysql.err.IntegrityError) (1062, "Duplicate entry 'US' for key 'locations.country'")
+[SQL: INSERT INTO locations (country, state, county, city, display_name, latitude, longitude) VALUES (%(country)s, %(state)s, %(county)s, %(city)s, %(display_name)s, %(latitude)s, %(longitude)s)]
+[parameters: {'country': 'US', 'state': 'Minnesota', 'county': 'Marshall County', 'city': 'Warren', 'display_name': 'Warren, Marshall County', 'latitude': None, 'longitude': None}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+Traceback (most recent call last):
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\cursors.py", line 159, in execute
+    result = self._query(query)
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\cursors.py", line 330, in _query
+    conn.query(q)
+    ~~~~~~~~~~^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\connections.py", line 582, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+                          ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\connections.py", line 847, in _read_query_result
+    result.read()
+    ~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\connections.py", line 1245, in read
+    first_packet = self.connection._read_packet()
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\connections.py", line 803, in _read_packet
+    packet.raise_for_error()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\err.py", line 154, in raise_mysql_exception
+    raise errorclass(errno, errval, sqlstate=sqlstate)
+pymysql.err.IntegrityError: (1062, "Duplicate entry 'US' for key 'locations.country'")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Portfolio\labor-market-intelligence-platform\src\etl\loader.py", line 23, in load
+    self._load_categories(session, transformed_data["categories"])
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Portfolio\labor-market-intelligence-platform\src\etl\loader.py", line 137, in _load_categories
+    for category in session.scalars(
+                    ~~~~~~~~~~~~~~~^
+        select(Category)
+        ^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\session.py", line 2481, in scalars
+    return self._execute_internal(
+           ~~~~~~~~~~~~~~~~~~~~~~^
+        statement,
+        ^^^^^^^^^^
+    ...<4 lines>...
+        **kw,
+        ^^^^^
+    ).scalars()
+    ^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\session.py", line 2250, in _execute_internal
+    ) = compile_state_cls.orm_pre_session_exec(
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self,
+        ^^^^^
+    ...<4 lines>...
+        False,
+        ^^^^^^
+    )
+    ^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\context.py", line 577, in orm_pre_session_exec
+    session._autoflush()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\session.py", line 3073, in _autoflush
+    raise e.with_traceback(sys.exc_info()[2])
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\session.py", line 3062, in _autoflush
+    self.flush()
+    ~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\session.py", line 4353, in flush
+    self._flush(objects)
+    ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\session.py", line 4488, in _flush
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 122, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\session.py", line 4449, in _flush
+    flush_context.execute()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\unitofwork.py", line 465, in execute
+    rec.execute(self)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\unitofwork.py", line 641, in execute
+    util.preloaded.orm_persistence.save_obj(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self.mapper,
+        ^^^^^^^^^^^^
+        uow.states_for_mapper_hierarchy(self.mapper, False, False),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        uow,
+        ^^^^
+    )
+    ^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\persistence.py", line 94, in save_obj
+    _emit_insert_statements(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        base_mapper,
+        ^^^^^^^^^^^^
+    ...<3 lines>...
+        insert,
+        ^^^^^^^
+    )
+    ^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\persistence.py", line 1234, in _emit_insert_statements
+    result = connection.execute(
+        statement,
+        params,
+        execution_options=execution_options,
+    )
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1421, in execute
+    return meth(
+        self,
+        distilled_parameters,
+        execution_options or NO_OPTIONS,
+    )
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\sql\elements.py", line 526, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self, distilled_params, execution_options
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1643, in _execute_clauseelement
+    ret = self._execute_context(
+        dialect,
+    ...<8 lines>...
+        cache_hit=cache_hit,
+    )
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1848, in _execute_context
+    return self._exec_single_context(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        dialect, context, statement, parameters
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1988, in _exec_single_context
+    self._handle_dbapi_exception(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        e, str_statement, effective_parameters, cursor, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 2365, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\cursors.py", line 159, in execute
+    result = self._query(query)
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\cursors.py", line 330, in _query
+    conn.query(q)
+    ~~~~~~~~~~^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\connections.py", line 582, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+                          ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\connections.py", line 847, in _read_query_result
+    result.read()
+    ~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\connections.py", line 1245, in read
+    first_packet = self.connection._read_packet()
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\connections.py", line 803, in _read_packet
+    packet.raise_for_error()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\err.py", line 154, in raise_mysql_exception
+    raise errorclass(errno, errval, sqlstate=sqlstate)
+sqlalchemy.exc.IntegrityError: (raised as a result of Query-invoked autoflush; consider using a session.no_autoflush block if this flush is occurring prematurely)
+(pymysql.err.IntegrityError) (1062, "Duplicate entry 'US' for key 'locations.country'")
+[SQL: INSERT INTO locations (country, state, county, city, display_name, latitude, longitude) VALUES (%(country)s, %(state)s, %(county)s, %(city)s, %(display_name)s, %(latitude)s, %(longitude)s)]
+[parameters: {'country': 'US', 'state': 'Minnesota', 'county': 'Marshall County', 'city': 'Warren', 'display_name': 'Warren, Marshall County', 'latitude': None, 'longitude': None}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2026-09-08 14:14:07,686 | INFO | etl.validator | Validated 20 of 20 job records.
+2026-09-08 14:14:07,687 | INFO | etl.transformer | Extracted 20 unique companies.
+2026-09-08 14:14:07,687 | INFO | etl.transformer | Extracted 19 unique locations.
+2026-09-08 14:14:07,687 | INFO | etl.transformer | Extracted 6 unique categories.
+2026-09-08 14:14:07,689 | INFO | etl.transformer | Extracted 20 unique job titles.
+2026-09-08 14:14:07,689 | INFO | etl.transformer | Transformation completed successfully.
+2026-09-08 14:14:07,690 | INFO | etl.loader | Starting data loading process.
+2026-09-08 14:14:07,763 | INFO | etl.loader | Inserted new source: Adzuna
+2026-09-08 14:14:07,768 | INFO | etl.loader | Inserted 20 new company(s).
+2026-09-08 14:14:07,780 | INFO | etl.loader | Inserted 19 new locations
+2026-09-08 14:14:07,786 | ERROR | etl.loader | Database loading failed: (raised as a result of Query-invoked autoflush; consider using a session.no_autoflush block if this flush is occurring prematurely)
+(pymysql.err.IntegrityError) (1062, "Duplicate entry 'US' for key 'locations.country'")
+[SQL: INSERT INTO locations (country, state, county, city, display_name, latitude, longitude) VALUES (%(country)s, %(state)s, %(county)s, %(city)s, %(display_name)s, %(latitude)s, %(longitude)s)]
+[parameters: {'country': 'US', 'state': 'Illinois', 'county': 'Champaign County', 'city': 'Champaign', 'display_name': 'Champaign, Champaign County', 'latitude': None, 'longitude': None}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+Traceback (most recent call last):
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\cursors.py", line 159, in execute
+    result = self._query(query)
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\cursors.py", line 330, in _query
+    conn.query(q)
+    ~~~~~~~~~~^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\connections.py", line 582, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+                          ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\connections.py", line 847, in _read_query_result
+    result.read()
+    ~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\connections.py", line 1245, in read
+    first_packet = self.connection._read_packet()
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\connections.py", line 803, in _read_packet
+    packet.raise_for_error()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\err.py", line 154, in raise_mysql_exception
+    raise errorclass(errno, errval, sqlstate=sqlstate)
+pymysql.err.IntegrityError: (1062, "Duplicate entry 'US' for key 'locations.country'")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Portfolio\labor-market-intelligence-platform\src\etl\loader.py", line 23, in load
+    self._load_categories(session, transformed_data["categories"])
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Portfolio\labor-market-intelligence-platform\src\etl\loader.py", line 137, in _load_categories
+    for category in session.scalars(
+                    ~~~~~~~~~~~~~~~^
+        select(Category)
+        ^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\session.py", line 2481, in scalars
+    return self._execute_internal(
+           ~~~~~~~~~~~~~~~~~~~~~~^
+        statement,
+        ^^^^^^^^^^
+    ...<4 lines>...
+        **kw,
+        ^^^^^
+    ).scalars()
+    ^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\session.py", line 2250, in _execute_internal
+    ) = compile_state_cls.orm_pre_session_exec(
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self,
+        ^^^^^
+    ...<4 lines>...
+        False,
+        ^^^^^^
+    )
+    ^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\context.py", line 577, in orm_pre_session_exec
+    session._autoflush()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\session.py", line 3073, in _autoflush
+    raise e.with_traceback(sys.exc_info()[2])
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\session.py", line 3062, in _autoflush
+    self.flush()
+    ~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\session.py", line 4353, in flush
+    self._flush(objects)
+    ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\session.py", line 4488, in _flush
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 122, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\session.py", line 4449, in _flush
+    flush_context.execute()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\unitofwork.py", line 465, in execute
+    rec.execute(self)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\unitofwork.py", line 641, in execute
+    util.preloaded.orm_persistence.save_obj(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self.mapper,
+        ^^^^^^^^^^^^
+        uow.states_for_mapper_hierarchy(self.mapper, False, False),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        uow,
+        ^^^^
+    )
+    ^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\persistence.py", line 94, in save_obj
+    _emit_insert_statements(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        base_mapper,
+        ^^^^^^^^^^^^
+    ...<3 lines>...
+        insert,
+        ^^^^^^^
+    )
+    ^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\persistence.py", line 1234, in _emit_insert_statements
+    result = connection.execute(
+        statement,
+        params,
+        execution_options=execution_options,
+    )
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1421, in execute
+    return meth(
+        self,
+        distilled_parameters,
+        execution_options or NO_OPTIONS,
+    )
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\sql\elements.py", line 526, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self, distilled_params, execution_options
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1643, in _execute_clauseelement
+    ret = self._execute_context(
+        dialect,
+    ...<8 lines>...
+        cache_hit=cache_hit,
+    )
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1848, in _execute_context
+    return self._exec_single_context(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        dialect, context, statement, parameters
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1988, in _exec_single_context
+    self._handle_dbapi_exception(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        e, str_statement, effective_parameters, cursor, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 2365, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\cursors.py", line 159, in execute
+    result = self._query(query)
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\cursors.py", line 330, in _query
+    conn.query(q)
+    ~~~~~~~~~~^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\connections.py", line 582, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+                          ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\connections.py", line 847, in _read_query_result
+    result.read()
+    ~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\connections.py", line 1245, in read
+    first_packet = self.connection._read_packet()
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\connections.py", line 803, in _read_packet
+    packet.raise_for_error()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\err.py", line 154, in raise_mysql_exception
+    raise errorclass(errno, errval, sqlstate=sqlstate)
+sqlalchemy.exc.IntegrityError: (raised as a result of Query-invoked autoflush; consider using a session.no_autoflush block if this flush is occurring prematurely)
+(pymysql.err.IntegrityError) (1062, "Duplicate entry 'US' for key 'locations.country'")
+[SQL: INSERT INTO locations (country, state, county, city, display_name, latitude, longitude) VALUES (%(country)s, %(state)s, %(county)s, %(city)s, %(display_name)s, %(latitude)s, %(longitude)s)]
+[parameters: {'country': 'US', 'state': 'Illinois', 'county': 'Champaign County', 'city': 'Champaign', 'display_name': 'Champaign, Champaign County', 'latitude': None, 'longitude': None}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2026-09-08 14:15:05,504 | INFO | etl.validator | Validated 20 of 20 job records.
+2026-09-08 14:15:05,505 | INFO | etl.transformer | Extracted 20 unique companies.
+2026-09-08 14:15:05,505 | INFO | etl.transformer | Extracted 19 unique locations.
+2026-09-08 14:15:05,506 | INFO | etl.transformer | Extracted 6 unique categories.
+2026-09-08 14:15:05,507 | INFO | etl.transformer | Extracted 20 unique job titles.
+2026-09-08 14:15:05,507 | INFO | etl.transformer | Transformation completed successfully.
+2026-09-08 14:15:05,508 | INFO | etl.loader | Starting data loading process.
+2026-09-08 14:15:05,545 | INFO | etl.loader | Inserted new source: Adzuna
+2026-09-08 14:15:05,549 | INFO | etl.loader | Inserted 20 new company(s).
+2026-09-08 14:15:05,558 | INFO | etl.loader | Inserted 19 new locations
+2026-09-08 14:15:05,564 | ERROR | etl.loader | Database loading failed: (raised as a result of Query-invoked autoflush; consider using a session.no_autoflush block if this flush is occurring prematurely)
+(pymysql.err.IntegrityError) (1062, "Duplicate entry 'US' for key 'locations.country'")
+[SQL: INSERT INTO locations (country, state, county, city, display_name, latitude, longitude) VALUES (%(country)s, %(state)s, %(county)s, %(city)s, %(display_name)s, %(latitude)s, %(longitude)s)]
+[parameters: {'country': 'US', 'state': 'Illinois', 'county': 'Champaign County', 'city': 'Champaign', 'display_name': 'Champaign, Champaign County', 'latitude': None, 'longitude': None}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+Traceback (most recent call last):
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\cursors.py", line 159, in execute
+    result = self._query(query)
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\cursors.py", line 330, in _query
+    conn.query(q)
+    ~~~~~~~~~~^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\connections.py", line 582, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+                          ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\connections.py", line 847, in _read_query_result
+    result.read()
+    ~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\connections.py", line 1245, in read
+    first_packet = self.connection._read_packet()
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\connections.py", line 803, in _read_packet
+    packet.raise_for_error()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\err.py", line 154, in raise_mysql_exception
+    raise errorclass(errno, errval, sqlstate=sqlstate)
+pymysql.err.IntegrityError: (1062, "Duplicate entry 'US' for key 'locations.country'")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Portfolio\labor-market-intelligence-platform\src\etl\loader.py", line 23, in load
+    self._load_categories(session, transformed_data["categories"])
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Portfolio\labor-market-intelligence-platform\src\etl\loader.py", line 137, in _load_categories
+    for category in session.scalars(
+                    ~~~~~~~~~~~~~~~^
+        select(Category)
+        ^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\session.py", line 2481, in scalars
+    return self._execute_internal(
+           ~~~~~~~~~~~~~~~~~~~~~~^
+        statement,
+        ^^^^^^^^^^
+    ...<4 lines>...
+        **kw,
+        ^^^^^
+    ).scalars()
+    ^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\session.py", line 2250, in _execute_internal
+    ) = compile_state_cls.orm_pre_session_exec(
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self,
+        ^^^^^
+    ...<4 lines>...
+        False,
+        ^^^^^^
+    )
+    ^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\context.py", line 577, in orm_pre_session_exec
+    session._autoflush()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\session.py", line 3073, in _autoflush
+    raise e.with_traceback(sys.exc_info()[2])
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\session.py", line 3062, in _autoflush
+    self.flush()
+    ~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\session.py", line 4353, in flush
+    self._flush(objects)
+    ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\session.py", line 4488, in _flush
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 122, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\session.py", line 4449, in _flush
+    flush_context.execute()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\unitofwork.py", line 465, in execute
+    rec.execute(self)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\unitofwork.py", line 641, in execute
+    util.preloaded.orm_persistence.save_obj(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self.mapper,
+        ^^^^^^^^^^^^
+        uow.states_for_mapper_hierarchy(self.mapper, False, False),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        uow,
+        ^^^^
+    )
+    ^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\persistence.py", line 94, in save_obj
+    _emit_insert_statements(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        base_mapper,
+        ^^^^^^^^^^^^
+    ...<3 lines>...
+        insert,
+        ^^^^^^^
+    )
+    ^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\persistence.py", line 1234, in _emit_insert_statements
+    result = connection.execute(
+        statement,
+        params,
+        execution_options=execution_options,
+    )
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1421, in execute
+    return meth(
+        self,
+        distilled_parameters,
+        execution_options or NO_OPTIONS,
+    )
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\sql\elements.py", line 526, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self, distilled_params, execution_options
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1643, in _execute_clauseelement
+    ret = self._execute_context(
+        dialect,
+    ...<8 lines>...
+        cache_hit=cache_hit,
+    )
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1848, in _execute_context
+    return self._exec_single_context(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        dialect, context, statement, parameters
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1988, in _exec_single_context
+    self._handle_dbapi_exception(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        e, str_statement, effective_parameters, cursor, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 2365, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\cursors.py", line 159, in execute
+    result = self._query(query)
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\cursors.py", line 330, in _query
+    conn.query(q)
+    ~~~~~~~~~~^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\connections.py", line 582, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+                          ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\connections.py", line 847, in _read_query_result
+    result.read()
+    ~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\connections.py", line 1245, in read
+    first_packet = self.connection._read_packet()
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\connections.py", line 803, in _read_packet
+    packet.raise_for_error()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\err.py", line 154, in raise_mysql_exception
+    raise errorclass(errno, errval, sqlstate=sqlstate)
+sqlalchemy.exc.IntegrityError: (raised as a result of Query-invoked autoflush; consider using a session.no_autoflush block if this flush is occurring prematurely)
+(pymysql.err.IntegrityError) (1062, "Duplicate entry 'US' for key 'locations.country'")
+[SQL: INSERT INTO locations (country, state, county, city, display_name, latitude, longitude) VALUES (%(country)s, %(state)s, %(county)s, %(city)s, %(display_name)s, %(latitude)s, %(longitude)s)]
+[parameters: {'country': 'US', 'state': 'Illinois', 'county': 'Champaign County', 'city': 'Champaign', 'display_name': 'Champaign, Champaign County', 'latitude': None, 'longitude': None}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2026-09-08 14:28:24,408 | INFO | etl.validator | Validated 20 of 20 job records.
+2026-09-08 14:28:24,408 | INFO | etl.transformer | Extracted 18 unique companies.
+2026-09-08 14:28:24,408 | INFO | etl.transformer | Extracted 20 unique locations.
+2026-09-08 14:28:24,408 | INFO | etl.transformer | Extracted 6 unique categories.
+2026-09-08 14:28:24,410 | INFO | etl.transformer | Extracted 20 unique job titles.
+2026-09-08 14:28:24,410 | INFO | etl.transformer | Transformation completed successfully.
+2026-09-08 14:28:24,411 | INFO | etl.loader | Starting data loading process.
+2026-09-08 14:28:24,466 | INFO | etl.loader | Inserted new source: Adzuna
+2026-09-08 14:28:24,469 | INFO | etl.loader | Inserted 18 new company(s).
+2026-09-08 14:28:24,478 | INFO | etl.loader | Inserted 20 new locations
+2026-09-08 14:28:24,485 | ERROR | etl.loader | Database loading failed: (raised as a result of Query-invoked autoflush; consider using a session.no_autoflush block if this flush is occurring prematurely)
+(pymysql.err.IntegrityError) (1062, "Duplicate entry 'US' for key 'locations.country'")
+[SQL: INSERT INTO locations (country, state, county, city, display_name, latitude, longitude) VALUES (%(country)s, %(state)s, %(county)s, %(city)s, %(display_name)s, %(latitude)s, %(longitude)s)]
+[parameters: {'country': 'US', 'state': 'Missouri', 'county': 'Saint Louis County', 'city': 'Manchester', 'display_name': 'Manchester, Saint Louis County', 'latitude': None, 'longitude': None}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+Traceback (most recent call last):
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\cursors.py", line 159, in execute
+    result = self._query(query)
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\cursors.py", line 330, in _query
+    conn.query(q)
+    ~~~~~~~~~~^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\connections.py", line 582, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+                          ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\connections.py", line 847, in _read_query_result
+    result.read()
+    ~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\connections.py", line 1245, in read
+    first_packet = self.connection._read_packet()
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\connections.py", line 803, in _read_packet
+    packet.raise_for_error()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\err.py", line 154, in raise_mysql_exception
+    raise errorclass(errno, errval, sqlstate=sqlstate)
+pymysql.err.IntegrityError: (1062, "Duplicate entry 'US' for key 'locations.country'")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Portfolio\labor-market-intelligence-platform\src\etl\loader.py", line 23, in load
+    self._load_categories(session, transformed_data["categories"])
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Portfolio\labor-market-intelligence-platform\src\etl\loader.py", line 137, in _load_categories
+    for category in session.scalars(
+                    ~~~~~~~~~~~~~~~^
+        select(Category)
+        ^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\session.py", line 2481, in scalars
+    return self._execute_internal(
+           ~~~~~~~~~~~~~~~~~~~~~~^
+        statement,
+        ^^^^^^^^^^
+    ...<4 lines>...
+        **kw,
+        ^^^^^
+    ).scalars()
+    ^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\session.py", line 2250, in _execute_internal
+    ) = compile_state_cls.orm_pre_session_exec(
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self,
+        ^^^^^
+    ...<4 lines>...
+        False,
+        ^^^^^^
+    )
+    ^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\context.py", line 577, in orm_pre_session_exec
+    session._autoflush()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\session.py", line 3073, in _autoflush
+    raise e.with_traceback(sys.exc_info()[2])
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\session.py", line 3062, in _autoflush
+    self.flush()
+    ~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\session.py", line 4353, in flush
+    self._flush(objects)
+    ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\session.py", line 4488, in _flush
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 122, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\session.py", line 4449, in _flush
+    flush_context.execute()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\unitofwork.py", line 465, in execute
+    rec.execute(self)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\unitofwork.py", line 641, in execute
+    util.preloaded.orm_persistence.save_obj(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self.mapper,
+        ^^^^^^^^^^^^
+        uow.states_for_mapper_hierarchy(self.mapper, False, False),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        uow,
+        ^^^^
+    )
+    ^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\persistence.py", line 94, in save_obj
+    _emit_insert_statements(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        base_mapper,
+        ^^^^^^^^^^^^
+    ...<3 lines>...
+        insert,
+        ^^^^^^^
+    )
+    ^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\persistence.py", line 1234, in _emit_insert_statements
+    result = connection.execute(
+        statement,
+        params,
+        execution_options=execution_options,
+    )
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1421, in execute
+    return meth(
+        self,
+        distilled_parameters,
+        execution_options or NO_OPTIONS,
+    )
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\sql\elements.py", line 526, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self, distilled_params, execution_options
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1643, in _execute_clauseelement
+    ret = self._execute_context(
+        dialect,
+    ...<8 lines>...
+        cache_hit=cache_hit,
+    )
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1848, in _execute_context
+    return self._exec_single_context(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        dialect, context, statement, parameters
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1988, in _exec_single_context
+    self._handle_dbapi_exception(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        e, str_statement, effective_parameters, cursor, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 2365, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\cursors.py", line 159, in execute
+    result = self._query(query)
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\cursors.py", line 330, in _query
+    conn.query(q)
+    ~~~~~~~~~~^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\connections.py", line 582, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+                          ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\connections.py", line 847, in _read_query_result
+    result.read()
+    ~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\connections.py", line 1245, in read
+    first_packet = self.connection._read_packet()
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\connections.py", line 803, in _read_packet
+    packet.raise_for_error()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\err.py", line 154, in raise_mysql_exception
+    raise errorclass(errno, errval, sqlstate=sqlstate)
+sqlalchemy.exc.IntegrityError: (raised as a result of Query-invoked autoflush; consider using a session.no_autoflush block if this flush is occurring prematurely)
+(pymysql.err.IntegrityError) (1062, "Duplicate entry 'US' for key 'locations.country'")
+[SQL: INSERT INTO locations (country, state, county, city, display_name, latitude, longitude) VALUES (%(country)s, %(state)s, %(county)s, %(city)s, %(display_name)s, %(latitude)s, %(longitude)s)]
+[parameters: {'country': 'US', 'state': 'Missouri', 'county': 'Saint Louis County', 'city': 'Manchester', 'display_name': 'Manchester, Saint Louis County', 'latitude': None, 'longitude': None}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2026-09-08 14:33:58,798 | INFO | etl.validator | Validated 20 of 20 job records.
+2026-09-08 14:33:58,798 | INFO | etl.transformer | Extracted 18 unique companies.
+2026-09-08 14:33:58,798 | INFO | etl.transformer | Extracted 20 unique locations.
+2026-09-08 14:33:58,798 | INFO | etl.transformer | Extracted 6 unique categories.
+2026-09-08 14:33:58,800 | INFO | etl.transformer | Extracted 20 unique job titles.
+2026-09-08 14:33:58,800 | INFO | etl.transformer | Transformation completed successfully.
+2026-09-08 14:33:58,801 | INFO | etl.loader | Starting data loading process.
+2026-09-08 14:33:58,839 | INFO | etl.loader | Inserted new source: Adzuna
+2026-09-08 14:33:58,843 | INFO | etl.loader | Inserted 18 new company(s).
+2026-09-08 14:33:58,855 | INFO | etl.loader | Inserted 20 new locations
+2026-09-08 14:33:58,861 | ERROR | etl.loader | Database loading failed: (raised as a result of Query-invoked autoflush; consider using a session.no_autoflush block if this flush is occurring prematurely)
+(pymysql.err.IntegrityError) (1062, "Duplicate entry 'US' for key 'locations.country'")
+[SQL: INSERT INTO locations (country, state, county, city, display_name, latitude, longitude) VALUES (%(country)s, %(state)s, %(county)s, %(city)s, %(display_name)s, %(latitude)s, %(longitude)s)]
+[parameters: {'country': 'US', 'state': 'Missouri', 'county': 'Saint Louis County', 'city': 'Manchester', 'display_name': 'Manchester, Saint Louis County', 'latitude': None, 'longitude': None}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+Traceback (most recent call last):
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\cursors.py", line 159, in execute
+    result = self._query(query)
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\cursors.py", line 330, in _query
+    conn.query(q)
+    ~~~~~~~~~~^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\connections.py", line 582, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+                          ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\connections.py", line 847, in _read_query_result
+    result.read()
+    ~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\connections.py", line 1245, in read
+    first_packet = self.connection._read_packet()
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\connections.py", line 803, in _read_packet
+    packet.raise_for_error()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\err.py", line 154, in raise_mysql_exception
+    raise errorclass(errno, errval, sqlstate=sqlstate)
+pymysql.err.IntegrityError: (1062, "Duplicate entry 'US' for key 'locations.country'")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Portfolio\labor-market-intelligence-platform\src\etl\loader.py", line 23, in load
+    self._load_categories(session, transformed_data["categories"])
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Portfolio\labor-market-intelligence-platform\src\etl\loader.py", line 137, in _load_categories
+    for category in session.scalars(
+                    ~~~~~~~~~~~~~~~^
+        select(Category)
+        ^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\session.py", line 2481, in scalars
+    return self._execute_internal(
+           ~~~~~~~~~~~~~~~~~~~~~~^
+        statement,
+        ^^^^^^^^^^
+    ...<4 lines>...
+        **kw,
+        ^^^^^
+    ).scalars()
+    ^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\session.py", line 2250, in _execute_internal
+    ) = compile_state_cls.orm_pre_session_exec(
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self,
+        ^^^^^
+    ...<4 lines>...
+        False,
+        ^^^^^^
+    )
+    ^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\context.py", line 577, in orm_pre_session_exec
+    session._autoflush()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\session.py", line 3073, in _autoflush
+    raise e.with_traceback(sys.exc_info()[2])
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\session.py", line 3062, in _autoflush
+    self.flush()
+    ~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\session.py", line 4353, in flush
+    self._flush(objects)
+    ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\session.py", line 4488, in _flush
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 122, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\session.py", line 4449, in _flush
+    flush_context.execute()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\unitofwork.py", line 465, in execute
+    rec.execute(self)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\unitofwork.py", line 641, in execute
+    util.preloaded.orm_persistence.save_obj(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self.mapper,
+        ^^^^^^^^^^^^
+        uow.states_for_mapper_hierarchy(self.mapper, False, False),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        uow,
+        ^^^^
+    )
+    ^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\persistence.py", line 94, in save_obj
+    _emit_insert_statements(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        base_mapper,
+        ^^^^^^^^^^^^
+    ...<3 lines>...
+        insert,
+        ^^^^^^^
+    )
+    ^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\persistence.py", line 1234, in _emit_insert_statements
+    result = connection.execute(
+        statement,
+        params,
+        execution_options=execution_options,
+    )
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1421, in execute
+    return meth(
+        self,
+        distilled_parameters,
+        execution_options or NO_OPTIONS,
+    )
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\sql\elements.py", line 526, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self, distilled_params, execution_options
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1643, in _execute_clauseelement
+    ret = self._execute_context(
+        dialect,
+    ...<8 lines>...
+        cache_hit=cache_hit,
+    )
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1848, in _execute_context
+    return self._exec_single_context(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        dialect, context, statement, parameters
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1988, in _exec_single_context
+    self._handle_dbapi_exception(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        e, str_statement, effective_parameters, cursor, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 2365, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\cursors.py", line 159, in execute
+    result = self._query(query)
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\cursors.py", line 330, in _query
+    conn.query(q)
+    ~~~~~~~~~~^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\connections.py", line 582, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+                          ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\connections.py", line 847, in _read_query_result
+    result.read()
+    ~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\connections.py", line 1245, in read
+    first_packet = self.connection._read_packet()
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\connections.py", line 803, in _read_packet
+    packet.raise_for_error()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\err.py", line 154, in raise_mysql_exception
+    raise errorclass(errno, errval, sqlstate=sqlstate)
+sqlalchemy.exc.IntegrityError: (raised as a result of Query-invoked autoflush; consider using a session.no_autoflush block if this flush is occurring prematurely)
+(pymysql.err.IntegrityError) (1062, "Duplicate entry 'US' for key 'locations.country'")
+[SQL: INSERT INTO locations (country, state, county, city, display_name, latitude, longitude) VALUES (%(country)s, %(state)s, %(county)s, %(city)s, %(display_name)s, %(latitude)s, %(longitude)s)]
+[parameters: {'country': 'US', 'state': 'Missouri', 'county': 'Saint Louis County', 'city': 'Manchester', 'display_name': 'Manchester, Saint Louis County', 'latitude': None, 'longitude': None}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2026-09-08 15:06:31,814 | INFO | etl.validator | Validated 20 of 20 job records.
+2026-09-08 15:06:31,814 | INFO | etl.transformer | Extracted 16 unique companies.
+2026-09-08 15:06:31,814 | INFO | etl.transformer | Extracted 20 unique locations.
+2026-09-08 15:06:31,815 | INFO | etl.transformer | Extracted 3 unique categories.
+2026-09-08 15:06:31,817 | INFO | etl.transformer | Extracted 20 unique job titles.
+2026-09-08 15:06:31,817 | INFO | etl.transformer | Transformation completed successfully.
+2026-09-08 15:06:31,817 | INFO | etl.loader | Starting data loading process.
+2026-09-08 15:06:31,876 | INFO | etl.loader | Inserted new source: Adzuna
+2026-09-08 15:06:31,879 | INFO | etl.loader | Inserted 16 new company(s).
+2026-09-08 15:06:31,889 | INFO | etl.loader | Inserted 20 new locations
+2026-09-08 15:06:31,909 | ERROR | etl.loader | Database loading failed: 'category_tag'
+Traceback (most recent call last):
+  File "D:\Portfolio\labor-market-intelligence-platform\src\etl\loader.py", line 23, in load
+    self._load_categories(session, transformed_data["categories"])
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Portfolio\labor-market-intelligence-platform\src\etl\loader.py", line 146, in _load_categories
+    category_tag = category["category_tag"]
+                   ~~~~~~~~^^^^^^^^^^^^^^^^
+KeyError: 'category_tag'
+2026-09-08 15:47:25,931 | INFO | etl.validator | Validated 20 of 20 job records.
+2026-09-08 15:47:25,933 | INFO | etl.transformer | Extracted 20 unique companies.
+2026-09-08 15:47:25,933 | INFO | etl.transformer | Extracted 20 unique locations.
+2026-09-08 15:47:25,934 | INFO | etl.transformer | Extracted 5 unique categories.
+2026-09-08 15:47:25,937 | INFO | etl.transformer | Extracted 20 unique job titles.
+2026-09-08 15:47:25,937 | INFO | etl.transformer | Transformation completed successfully.
+2026-09-08 15:47:25,938 | INFO | etl.loader | Starting data loading process.
+2026-09-08 15:47:25,982 | INFO | etl.loader | Inserted new source: Adzuna
+2026-09-08 15:47:25,988 | INFO | etl.loader | Inserted 20 new company(s).
+2026-09-08 15:47:25,999 | INFO | etl.loader | Inserted 20 new locations
+2026-09-08 15:47:26,014 | ERROR | etl.loader | Database loading failed: 'category_tag'
+Traceback (most recent call last):
+  File "D:\Portfolio\labor-market-intelligence-platform\src\etl\loader.py", line 23, in load
+    self._load_categories(session, transformed_data["categories"])
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Portfolio\labor-market-intelligence-platform\src\etl\loader.py", line 146, in _load_categories
+    category_tag = category["category_tag"]
+                   ~~~~~~~~^^^^^^^^^^^^^^^^
+KeyError: 'category_tag'
+2026-09-08 15:51:28,916 | INFO | etl.validator | Validated 20 of 20 job records.
+2026-09-08 15:51:28,917 | INFO | etl.transformer | Extracted 20 unique companies.
+2026-09-08 15:51:28,918 | INFO | etl.transformer | Extracted 20 unique locations.
+2026-09-08 15:51:28,918 | INFO | etl.transformer | Extracted 5 unique categories.
+2026-09-08 15:51:28,923 | INFO | etl.transformer | Extracted 20 unique job titles.
+2026-09-08 15:51:28,923 | INFO | etl.transformer | Transformation completed successfully.
+2026-09-08 15:51:28,924 | INFO | etl.loader | Starting data loading process.
+2026-09-08 15:51:28,988 | INFO | etl.loader | Inserted new source: Adzuna
+2026-09-08 15:51:28,992 | INFO | etl.loader | Inserted 20 new company(s).
+2026-09-08 15:51:29,003 | INFO | etl.loader | Inserted 20 new locations
+2026-09-08 15:51:29,021 | ERROR | etl.loader | Database loading failed: 'category_tag'
+Traceback (most recent call last):
+  File "D:\Portfolio\labor-market-intelligence-platform\src\etl\loader.py", line 23, in load
+    self._load_categories(session, transformed_data["categories"])
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Portfolio\labor-market-intelligence-platform\src\etl\loader.py", line 146, in _load_categories
+    category_tag = category["category_tag"]
+                   ~~~~~~~~^^^^^^^^^^^^^^^^
+KeyError: 'category_tag'
+2026-09-08 15:54:35,310 | INFO | etl.validator | Validated 20 of 20 job records.
+2026-09-08 15:54:35,311 | INFO | etl.transformer | Extracted 19 unique companies.
+2026-09-08 15:54:35,312 | INFO | etl.transformer | Extracted 20 unique locations.
+2026-09-08 15:54:35,312 | INFO | etl.transformer | Extracted 6 unique categories.
+2026-09-08 15:54:35,316 | INFO | etl.transformer | Extracted 20 unique job titles.
+2026-09-08 15:54:35,316 | INFO | etl.transformer | Transformation completed successfully.
+2026-09-08 15:54:35,317 | INFO | etl.loader | Starting data loading process.
+2026-09-08 15:54:35,388 | INFO | etl.loader | Inserted new source: Adzuna
+2026-09-08 15:54:35,392 | INFO | etl.loader | Inserted 19 new company(s).
+2026-09-08 15:54:35,401 | INFO | etl.loader | Inserted 20 new locations
+2026-09-08 15:54:35,414 | ERROR | etl.loader | Database loading failed: 'category_name'
+Traceback (most recent call last):
+  File "D:\Portfolio\labor-market-intelligence-platform\src\etl\loader.py", line 23, in load
+    self._load_categories(session, transformed_data["categories"])
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Portfolio\labor-market-intelligence-platform\src\etl\loader.py", line 153, in _load_categories
+    category_name = category["category_name"]
+                    ~~~~~~~~^^^^^^^^^^^^^^^^^
+KeyError: 'category_name'
+2026-09-08 15:56:04,387 | INFO | etl.validator | Validated 20 of 20 job records.
+2026-09-08 15:56:04,388 | INFO | etl.transformer | Extracted 19 unique companies.
+2026-09-08 15:56:04,388 | INFO | etl.transformer | Extracted 20 unique locations.
+2026-09-08 15:56:04,389 | INFO | etl.transformer | Extracted 6 unique categories.
+2026-09-08 15:56:04,396 | INFO | etl.transformer | Extracted 20 unique job titles.
+2026-09-08 15:56:04,396 | INFO | etl.transformer | Transformation completed successfully.
+2026-09-08 15:56:04,397 | INFO | etl.loader | Starting data loading process.
+2026-09-08 15:56:04,443 | INFO | etl.loader | Inserted new source: Adzuna
+2026-09-08 15:56:04,447 | INFO | etl.loader | Inserted 19 new company(s).
+2026-09-08 15:56:04,460 | INFO | etl.loader | Inserted 20 new locations
+2026-09-08 15:56:04,476 | ERROR | etl.loader | Database loading failed: 'category_label' is an invalid keyword argument for Category
+Traceback (most recent call last):
+  File "D:\Portfolio\labor-market-intelligence-platform\src\etl\loader.py", line 23, in load
+    self._load_categories(session, transformed_data["categories"])
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Portfolio\labor-market-intelligence-platform\src\etl\loader.py", line 151, in _load_categories
+    Category(
+    ~~~~~~~~^
+      category_tag = category_tag,
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      category_label = category["category_label"]
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "<string>", line 4, in __init__
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\state.py", line 596, in _initialize_instance
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 122, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\state.py", line 594, in _initialize_instance
+    manager.original_init(*mixed[1:], **kwargs)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\decl_base.py", line 2179, in _declarative_constructor
+    raise TypeError(
+        "%r is an invalid keyword argument for %s" % (k, cls_.__name__)
+    )
+TypeError: 'category_label' is an invalid keyword argument for Category
+2026-09-08 15:57:16,843 | INFO | etl.validator | Validated 20 of 20 job records.
+2026-09-08 15:57:16,844 | INFO | etl.transformer | Extracted 19 unique companies.
+2026-09-08 15:57:16,844 | INFO | etl.transformer | Extracted 20 unique locations.
+2026-09-08 15:57:16,844 | INFO | etl.transformer | Extracted 6 unique categories.
+2026-09-08 15:57:16,847 | INFO | etl.transformer | Extracted 20 unique job titles.
+2026-09-08 15:57:16,847 | INFO | etl.transformer | Transformation completed successfully.
+2026-09-08 15:57:16,848 | INFO | etl.loader | Starting data loading process.
+2026-09-08 15:57:16,889 | INFO | etl.loader | Inserted new source: Adzuna
+2026-09-08 15:57:16,894 | INFO | etl.loader | Inserted 19 new company(s).
+2026-09-08 15:57:16,907 | INFO | etl.loader | Inserted 20 new locations
+2026-09-08 15:57:16,916 | ERROR | etl.loader | Database loading failed: 'category_name'
+Traceback (most recent call last):
+  File "D:\Portfolio\labor-market-intelligence-platform\src\etl\loader.py", line 23, in load
+    self._load_categories(session, transformed_data["categories"])
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Portfolio\labor-market-intelligence-platform\src\etl\loader.py", line 153, in _load_categories
+    category_label = category["category_name"]
+                     ~~~~~~~~^^^^^^^^^^^^^^^^^
+KeyError: 'category_name'
+2026-09-08 15:58:33,244 | INFO | etl.validator | Validated 20 of 20 job records.
+2026-09-08 15:58:33,245 | INFO | etl.transformer | Extracted 19 unique companies.
+2026-09-08 15:58:33,245 | INFO | etl.transformer | Extracted 20 unique locations.
+2026-09-08 15:58:33,246 | INFO | etl.transformer | Extracted 6 unique categories.
+2026-09-08 15:58:33,250 | INFO | etl.transformer | Extracted 20 unique job titles.
+2026-09-08 15:58:33,251 | INFO | etl.transformer | Transformation completed successfully.
+2026-09-08 15:58:33,252 | INFO | etl.loader | Starting data loading process.
+2026-09-08 15:58:33,306 | INFO | etl.loader | Inserted new source: Adzuna
+2026-09-08 15:58:33,310 | INFO | etl.loader | Inserted 19 new company(s).
+2026-09-08 15:58:33,321 | INFO | etl.loader | Inserted 20 new locations
+2026-09-08 15:58:33,336 | ERROR | etl.loader | Database loading failed: 'category_name'
+Traceback (most recent call last):
+  File "D:\Portfolio\labor-market-intelligence-platform\src\etl\loader.py", line 23, in load
+    self._load_categories(session, transformed_data["categories"])
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Portfolio\labor-market-intelligence-platform\src\etl\loader.py", line 153, in _load_categories
+    category_label = category["category_name"]
+                     ~~~~~~~~^^^^^^^^^^^^^^^^^
+KeyError: 'category_name'
+2026-09-08 16:03:49,720 | INFO | etl.validator | Validated 20 of 20 job records.
+2026-09-08 16:03:49,721 | INFO | etl.transformer | Extracted 19 unique companies.
+2026-09-08 16:03:49,721 | INFO | etl.transformer | Extracted 20 unique locations.
+2026-09-08 16:03:49,722 | INFO | etl.transformer | Extracted 6 unique categories.
+2026-09-08 16:03:49,726 | INFO | etl.transformer | Extracted 20 unique job titles.
+2026-09-08 16:03:49,726 | INFO | etl.transformer | Transformation completed successfully.
+2026-09-08 16:03:49,727 | INFO | etl.loader | Starting data loading process.
+2026-09-08 16:03:49,808 | INFO | etl.loader | Inserted new source: Adzuna
+2026-09-08 16:03:49,813 | INFO | etl.loader | Inserted 19 new company(s).
+2026-09-08 16:03:49,825 | INFO | etl.loader | Inserted 20 new locations
+2026-09-08 16:03:49,835 | INFO | etl.loader | Inserted 6 new categories
+2026-09-08 16:03:49,840 | INFO | etl.loader | Built company lookup with 19 entries.
+2026-09-08 16:03:49,841 | INFO | etl.loader | Built location lookup with 20 entries.
+2026-09-08 16:03:49,842 | INFO | etl.loader | Built category lookup with 6 entries.
+2026-09-08 16:03:49,843 | INFO | etl.loader | Built source lookup with 1 entries.
+2026-09-08 16:03:49,849 | ERROR | etl.loader | Database loading failed: 'job_id'
+Traceback (most recent call last):
+  File "D:\Portfolio\labor-market-intelligence-platform\src\etl\loader.py", line 30, in load
+        self._load_jobs(
+        ~~~~~~~~~~~~~~~^
+        session,
+        ^^^^^^^^
+    ...<4 lines>...
+        source_lookup,
+        ^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Portfolio\labor-market-intelligence-platform\src\etl\loader.py", line 243, in _load_jobs
+    if job["job_id"] in existing_jobs:
+       ~~~^^^^^^^^^^
+KeyError: 'job_id'
+2026-09-08 16:06:51,082 | INFO | etl.validator | Validated 20 of 20 job records.
+2026-09-08 16:06:51,083 | INFO | etl.transformer | Extracted 17 unique companies.
+2026-09-08 16:06:51,083 | INFO | etl.transformer | Extracted 20 unique locations.
+2026-09-08 16:06:51,083 | INFO | etl.transformer | Extracted 5 unique categories.
+2026-09-08 16:06:51,086 | INFO | etl.transformer | Extracted 20 unique job titles.
+2026-09-08 16:06:51,086 | INFO | etl.transformer | Transformation completed successfully.
+2026-09-08 16:06:51,088 | INFO | etl.loader | Starting data loading process.
+2026-09-08 16:06:51,126 | INFO | etl.loader | Inserted new source: Adzuna
+2026-09-08 16:06:51,132 | INFO | etl.loader | Inserted 17 new company(s).
+2026-09-08 16:06:51,143 | INFO | etl.loader | Inserted 20 new locations
+2026-09-08 16:06:51,154 | INFO | etl.loader | Inserted 5 new categories
+2026-09-08 16:06:51,158 | INFO | etl.loader | Built company lookup with 17 entries.
+2026-09-08 16:06:51,160 | INFO | etl.loader | Built location lookup with 20 entries.
+2026-09-08 16:06:51,160 | INFO | etl.loader | Built category lookup with 5 entries.
+2026-09-08 16:06:51,161 | INFO | etl.loader | Built source lookup with 1 entries.
+2026-09-08 16:06:51,169 | ERROR | etl.loader | Database loading failed: 'job_id'
+Traceback (most recent call last):
+  File "D:\Portfolio\labor-market-intelligence-platform\src\etl\loader.py", line 30, in load
+        self._load_jobs(
+        ~~~~~~~~~~~~~~~^
+        session,
+        ^^^^^^^^
+    ...<4 lines>...
+        source_lookup,
+        ^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Portfolio\labor-market-intelligence-platform\src\etl\loader.py", line 243, in _load_jobs
+    if job["job_id"] in existing_jobs:
+       ~~~^^^^^^^^^^
+KeyError: 'job_id'
+2026-09-08 16:12:37,096 | INFO | etl.validator | Validated 20 of 20 job records.
+2026-09-08 16:12:37,097 | INFO | etl.transformer | Extracted 17 unique companies.
+2026-09-08 16:12:37,097 | INFO | etl.transformer | Extracted 20 unique locations.
+2026-09-08 16:12:37,097 | INFO | etl.transformer | Extracted 5 unique categories.
+2026-09-08 16:12:37,100 | INFO | etl.transformer | Extracted 20 unique job titles.
+2026-09-08 16:12:37,100 | INFO | etl.transformer | Transformation completed successfully.
+2026-09-08 16:12:37,101 | INFO | etl.loader | Starting data loading process.
+2026-09-08 16:12:37,145 | INFO | etl.loader | Inserted new source: Adzuna
+2026-09-08 16:12:37,149 | INFO | etl.loader | Inserted 17 new company(s).
+2026-09-08 16:12:37,160 | INFO | etl.loader | Inserted 20 new locations
+2026-09-08 16:12:37,170 | INFO | etl.loader | Inserted 5 new categories
+2026-09-08 16:12:37,177 | INFO | etl.loader | Built company lookup with 17 entries.
+2026-09-08 16:12:37,179 | INFO | etl.loader | Built location lookup with 20 entries.
+2026-09-08 16:12:37,180 | INFO | etl.loader | Built category lookup with 5 entries.
+2026-09-08 16:12:37,181 | INFO | etl.loader | Built source lookup with 1 entries.
+2026-09-08 16:12:37,184 | INFO | etl.loader | Inserted 20 new jobs.
+2026-09-08 16:12:37,192 | ERROR | etl.loader | Database loading failed: (pymysql.err.DataError) (1264, "Out of range value for column 'job_id' at row 1")
+[SQL: INSERT INTO jobs (job_id, title, description, salary_min, salary_max, salary_average, salary_predicted, contract_type, contract_time, created_date, redirect_url, adref, company_id, location_id, category_id, source_id) VALUES (%(job_id)s, %(title)s, %(description)s, %(salary_min)s, %(salary_max)s, %(salary_average)s, %(salary_predicted)s, %(contract_type)s, %(contract_time)s, %(created_date)s, %(redirect_url)s, %(adref)s, %(company_id)s, %(location_id)s, %(category_id)s, %(source_id)s)]
+[parameters: [{'job_id': '5791476744', 'title': 'Assistant Manager', 'description': ['job_description'], 'salary_min': 38129.23, 'salary_max': 38129.23, 'salary_average': 38129.23, 'salary_predicted': 1, 'contract_type': None, 'contract_time': None, 'created_date': datetime.datetime(2026, 7, 7, 18, 33, 28), 'redirect_url': 'https://www.adzuna.com/land/ad/5791476744?se=8pfr9Yar8RGFQsSd8o16ag&utm_medium=api&utm_source=933b3abe&v=4BC4199BF2F43FF810FD9733D43C6B139F139C32', 'adref': 'eyJhbGciOiJIUzI1NiJ9.eyJzIjoiOHBmcjlZYXI4UkdGUXNTZDhvMTZhZyIsImkiOiI1NzkxNDc2NzQ0In0.U8ROYSm6pl-SzlFDFG50R6dSaQ0K1-t6QL7f4irmLRQ', 'company_id': 283, 'location_id': 193, 'category_id': 12, 'source_id': 16}, {'job_id': '5865697082', 'title': 'Registered Nurse RN Emergency Room Weekends', 'description': ['job_description'], 'salary_min': 57683.45, 'salary_max': 57683.45, 'salary_average': 57683.45, 'salary_predicted': 1, 'contract_type': None, 'contract_time': None, 'created_date': datetime.datetime(2026, 9, 1, 18, 58, 47), 'redirect_url': 'https://www.adzuna.com/land/ad/5865697082?se=8pfr9Yar8RGFQsSd8o16ag&utm_medium=api&utm_source=933b3abe&v=E7CF675B16B9D12802EFCC3AD0289FF8BBE7EC67', 'adref': 'eyJhbGciOiJIUzI1NiJ9.eyJpIjoiNTg2NTY5NzA4MiIsInMiOiI4cGZyOVlhcjhSR0ZRc1NkOG8xNmFnIn0.W3dpTiJ-I5ygIlDHbu8cIQj9HJ4VIImq5qR0RrvlPVM', 'company_id': 284, 'location_id': 194, 'category_id': 13, 'source_id': 16}, {'job_id': '5831417139', 'title': 'Telemetry Unit - Travel Registered Nurse - $2340 per week.', 'description': ['job_description'], 'salary_min': 0, 'salary_max': 121680, 'salary_average': 60840.0, 'salary_predicted': 1, 'contract_type': None, 'contract_time': None, 'created_date': datetime.datetime(2026, 8, 6, 22, 15, 15), 'redirect_url': 'https://www.adzuna.com/land/ad/5831417139?se=8pfr9Yar8RGFQsSd8o16ag&utm_medium=api&utm_source=933b3abe&v=0A8CC219F7A02D1A0D60136A5EAD00C52052B782', 'adref': 'eyJhbGciOiJIUzI1NiJ9.eyJpIjoiNTgzMTQxNzEzOSIsInMiOiI4cGZyOVlhcjhSR0ZRc1NkOG8xNmFnIn0.2T0fdYTH8xfSDRdodGbAf7LE_BNltTi3kULXwG_FEoo', 'company_id': 285, 'location_id': 195, 'category_id': 13, 'source_id': 16}, {'job_id': '5853238683', 'title': 'Registered Dental Hygienist', 'description': ['job_description'], 'salary_min': 145607.23, 'salary_max': 145607.23, 'salary_average': 145607.23, 'salary_predicted': 1, 'contract_type': None, 'contract_time': None, 'created_date': datetime.datetime(2026, 8, 22, 22, 52, 53), 'redirect_url': 'https://www.adzuna.com/land/ad/5853238683?se=8pfr9Yar8RGFQsSd8o16ag&utm_medium=api&utm_source=933b3abe&v=C7820AA7A7CE5AA20FB7147FE890AC62594AA4F5', 'adref': 'eyJhbGciOiJIUzI1NiJ9.eyJpIjoiNTg1MzIzODY4MyIsInMiOiI4cGZyOVlhcjhSR0ZRc1NkOG8xNmFnIn0.f8wCf7a7zFGRwZGPWzgvl9UwN6GaUbAYoSYRYYMYEQM', 'company_id': 286, 'location_id': 196, 'category_id': 13, 'source_id': 16}, {'job_id': '5835520320', 'title': 'Shop, Deliver, Earn Cash - Instacart', 'description': ['job_description'], 'salary_min': 69646.65, 'salary_max': 69646.65, 'salary_average': 69646.65, 'salary_predicted': 1, 'contract_type': None, 'contract_time': None, 'created_date': datetime.datetime(2026, 8, 10, 6, 59, 34), 'redirect_url': 'https://www.adzuna.com/land/ad/5835520320?se=8pfr9Yar8RGFQsSd8o16ag&utm_medium=api&utm_source=933b3abe&v=3D2901641C78A5D373635069D8895D7691800C6A', 'adref': 'eyJhbGciOiJIUzI1NiJ9.eyJpIjoiNTgzNTUyMDMyMCIsInMiOiI4cGZyOVlhcjhSR0ZRc1NkOG8xNmFnIn0.l0JXvjOmGW78zhW-swR2yQ-Sg9YnO09OllfSN2agpKk', 'company_id': 287, 'location_id': 197, 'category_id': 12, 'source_id': 16}, {'job_id': '5864379324', 'title': 'RN Acute Care Oncology', 'description': ['job_description'], 'salary_min': 59738.17, 'salary_max': 59738.17, 'salary_average': 59738.17, 'salary_predicted': 1, 'contract_type': None, 'contract_time': None, 'created_date': datetime.datetime(2026, 9, 1, 6, 41, 54), 'redirect_url': 'https://www.adzuna.com/land/ad/5864379324?se=8pfr9Yar8RGFQsSd8o16ag&utm_medium=api&utm_source=933b3abe&v=F2804F0A3712DBB7CD84567B843F7E4F5848D0FA', 'adref': 'eyJhbGciOiJIUzI1NiJ9.eyJpIjoiNTg2NDM3OTMyNCIsInMiOiI4cGZyOVlhcjhSR0ZRc1NkOG8xNmFnIn0.MsD6axY8V3tiobY_VuAy6Fpu0nDSoUUgAvK_Od2WuRE', 'company_id': 288, 'location_id': 198, 'category_id': 13, 'source_id': 16}, {'job_id': '5865708388', 'title': 'Registered Nurse Med Surg', 'description': ['job_description'], 'salary_min': 88180.93, 'salary_max': 88180.93, 'salary_average': 88180.93, 'salary_predicted': 1, 'contract_type': None, 'contract_time': None, 'created_date': datetime.datetime(2026, 9, 1, 19, 1, 17), 'redirect_url': 'https://www.adzuna.com/land/ad/5865708388?se=8pfr9Yar8RGFQsSd8o16ag&utm_medium=api&utm_source=933b3abe&v=2889E4476740177ECBB0824C38D8324CE1C4EAAC', 'adref': 'eyJhbGciOiJIUzI1NiJ9.eyJpIjoiNTg2NTcwODM4OCIsInMiOiI4cGZyOVlhcjhSR0ZRc1NkOG8xNmFnIn0.ecJ8SQAOw8jYETQ12sPJNhRDnBVbQPTPq1FR3GH0ARI', 'company_id': 289, 'location_id': 199, 'category_id': 13, 'source_id': 16}, {'job_id': '5865758163', 'title': 'Radiology Tech', 'description': ['job_description'], 'salary_min': 167524.5, 'salary_max': 167524.5, 'salary_average': 167524.5, 'salary_predicted': 1, 'contract_type': None, 'contract_time': None, 'created_date': datetime.datetime(2026, 9, 1, 19, 16, 13), 'redirect_url': 'https://www.adzuna.com/land/ad/5865758163?se=8pfr9Yar8RGFQsSd8o16ag&utm_medium=api&utm_source=933b3abe&v=090C6AAECF8311C083EF847047C6EF5A1A230322', 'adref': 'eyJhbGciOiJIUzI1NiJ9.eyJpIjoiNTg2NTc1ODE2MyIsInMiOiI4cGZyOVlhcjhSR0ZRc1NkOG8xNmFnIn0.g6faDGYsb2zLw1sXZHqtOlZiCiUlzIgrds95gc7MQN0', 'company_id': 290, 'location_id': 200, 'category_id': 13, 'source_id': 16}  ... displaying 10 of 20 total bound parameter sets ...  {'job_id': '5828639805', 'title': 'CDL-A Drivers - No Touch Freight - Recent Grads Welcome!', 'description': ['job_description'], 'salary_min': 92675.91, 'salary_max': 92675.91, 'salary_average': 92675.91, 'salary_predicted': 1, 'contract_type': None, 'contract_time': None, 'created_date': datetime.datetime(2026, 8, 4, 22, 25, 31), 'redirect_url': 'https://www.adzuna.com/land/ad/5828639805?se=8pfr9Yar8RGFQsSd8o16ag&utm_medium=api&utm_source=933b3abe&v=0E87E0D4E9AFA6ED93E69882A7E5BB5F036F234A', 'adref': 'eyJhbGciOiJIUzI1NiJ9.eyJzIjoiOHBmcjlZYXI4UkdGUXNTZDhvMTZhZyIsImkiOiI1ODI4NjM5ODA1In0.TEkaFFnM83LMj7pqO9AXZnFAQnUGg4vFTziP9TKwRjA', 'company_id': 299, 'location_id': 211, 'category_id': 16, 'source_id': 16}, {'job_id': '5863743187', 'title': 'Registered Nurse Cardiovascular', 'description': ['job_description'], 'salary_min': 76397.69, 'salary_max': 76397.69, 'salary_average': 76397.69, 'salary_predicted': 1, 'contract_type': None, 'contract_time': None, 'created_date': datetime.datetime(2026, 8, 31, 22, 39, 49), 'redirect_url': 'https://www.adzuna.com/land/ad/5863743187?se=8pfr9Yar8RGFQsSd8o16ag&utm_medium=api&utm_source=933b3abe&v=CFA076BCD0CF45FDF40182EC67BE0895C1F6795F', 'adref': 'eyJhbGciOiJIUzI1NiJ9.eyJzIjoiOHBmcjlZYXI4UkdGUXNTZDhvMTZhZyIsImkiOiI1ODYzNzQzMTg3In0.XVNLngfjUvoAZIs0sy1qZ5E5oqRAzHejmPDiyLNsbCs', 'company_id': 291, 'location_id': 212, 'category_id': 13, 'source_id': 16}]]
+(Background on this error at: https://sqlalche.me/e/20/9h9h)
+Traceback (most recent call last):
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1938, in _exec_single_context
+    self.dialect.do_executemany(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor,
+        ^^^^^^^
+    ...<2 lines>...
+        context,
+        ^^^^^^^^
+    )
+    ^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\dialects\mysql\mysqldb.py", line 197, in do_executemany
+    rowcount = cursor.executemany(statement, parameters)
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\cursors.py", line 188, in executemany
+    return self._do_execute_many(
+           ~~~~~~~~~~~~~~~~~~~~~^
+        q_prefix,
+        ^^^^^^^^^
+    ...<4 lines>...
+        self._get_db().encoding,
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\cursors.py", line 226, in _do_execute_many
+    rows += self.execute(sql + postfix)
+            ~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\cursors.py", line 159, in execute
+    result = self._query(query)
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\cursors.py", line 330, in _query
+    conn.query(q)
+    ~~~~~~~~~~^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\connections.py", line 582, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+                          ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\connections.py", line 847, in _read_query_result
+    result.read()
+    ~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\connections.py", line 1245, in read
+    first_packet = self.connection._read_packet()
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\connections.py", line 803, in _read_packet
+    packet.raise_for_error()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\err.py", line 154, in raise_mysql_exception
+    raise errorclass(errno, errval, sqlstate=sqlstate)
+pymysql.err.DataError: (1264, "Out of range value for column 'job_id' at row 1")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Portfolio\labor-market-intelligence-platform\src\etl\loader.py", line 38, in load
+    session.commit()
+    ~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\session.py", line 2035, in commit
+    trans.commit(_to_root=True)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "<string>", line 2, in commit
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\state_changes.py", line 137, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\session.py", line 1316, in commit
+    self._prepare_impl()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "<string>", line 2, in _prepare_impl
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\state_changes.py", line 137, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\session.py", line 1290, in _prepare_impl
+    self.session.flush()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\session.py", line 4353, in flush
+    self._flush(objects)
+    ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\session.py", line 4488, in _flush
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 122, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\session.py", line 4449, in _flush
+    flush_context.execute()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\unitofwork.py", line 465, in execute
+    rec.execute(self)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\unitofwork.py", line 641, in execute
+    util.preloaded.orm_persistence.save_obj(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self.mapper,
+        ^^^^^^^^^^^^
+        uow.states_for_mapper_hierarchy(self.mapper, False, False),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        uow,
+        ^^^^
+    )
+    ^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\persistence.py", line 94, in save_obj
+    _emit_insert_statements(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        base_mapper,
+        ^^^^^^^^^^^^
+    ...<3 lines>...
+        insert,
+        ^^^^^^^
+    )
+    ^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\persistence.py", line 1049, in _emit_insert_statements
+    result = connection.execute(
+        statement, multiparams, execution_options=execution_options
+    )
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1421, in execute
+    return meth(
+        self,
+        distilled_parameters,
+        execution_options or NO_OPTIONS,
+    )
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\sql\elements.py", line 526, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self, distilled_params, execution_options
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1643, in _execute_clauseelement
+    ret = self._execute_context(
+        dialect,
+    ...<8 lines>...
+        cache_hit=cache_hit,
+    )
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1848, in _execute_context
+    return self._exec_single_context(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        dialect, context, statement, parameters
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1988, in _exec_single_context
+    self._handle_dbapi_exception(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        e, str_statement, effective_parameters, cursor, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 2365, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1938, in _exec_single_context
+    self.dialect.do_executemany(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor,
+        ^^^^^^^
+    ...<2 lines>...
+        context,
+        ^^^^^^^^
+    )
+    ^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\dialects\mysql\mysqldb.py", line 197, in do_executemany
+    rowcount = cursor.executemany(statement, parameters)
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\cursors.py", line 188, in executemany
+    return self._do_execute_many(
+           ~~~~~~~~~~~~~~~~~~~~~^
+        q_prefix,
+        ^^^^^^^^^
+    ...<4 lines>...
+        self._get_db().encoding,
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\cursors.py", line 226, in _do_execute_many
+    rows += self.execute(sql + postfix)
+            ~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\cursors.py", line 159, in execute
+    result = self._query(query)
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\cursors.py", line 330, in _query
+    conn.query(q)
+    ~~~~~~~~~~^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\connections.py", line 582, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+                          ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\connections.py", line 847, in _read_query_result
+    result.read()
+    ~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\connections.py", line 1245, in read
+    first_packet = self.connection._read_packet()
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\connections.py", line 803, in _read_packet
+    packet.raise_for_error()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\err.py", line 154, in raise_mysql_exception
+    raise errorclass(errno, errval, sqlstate=sqlstate)
+sqlalchemy.exc.DataError: (pymysql.err.DataError) (1264, "Out of range value for column 'job_id' at row 1")
+[SQL: INSERT INTO jobs (job_id, title, description, salary_min, salary_max, salary_average, salary_predicted, contract_type, contract_time, created_date, redirect_url, adref, company_id, location_id, category_id, source_id) VALUES (%(job_id)s, %(title)s, %(description)s, %(salary_min)s, %(salary_max)s, %(salary_average)s, %(salary_predicted)s, %(contract_type)s, %(contract_time)s, %(created_date)s, %(redirect_url)s, %(adref)s, %(company_id)s, %(location_id)s, %(category_id)s, %(source_id)s)]
+[parameters: [{'job_id': '5791476744', 'title': 'Assistant Manager', 'description': ['job_description'], 'salary_min': 38129.23, 'salary_max': 38129.23, 'salary_average': 38129.23, 'salary_predicted': 1, 'contract_type': None, 'contract_time': None, 'created_date': datetime.datetime(2026, 7, 7, 18, 33, 28), 'redirect_url': 'https://www.adzuna.com/land/ad/5791476744?se=8pfr9Yar8RGFQsSd8o16ag&utm_medium=api&utm_source=933b3abe&v=4BC4199BF2F43FF810FD9733D43C6B139F139C32', 'adref': 'eyJhbGciOiJIUzI1NiJ9.eyJzIjoiOHBmcjlZYXI4UkdGUXNTZDhvMTZhZyIsImkiOiI1NzkxNDc2NzQ0In0.U8ROYSm6pl-SzlFDFG50R6dSaQ0K1-t6QL7f4irmLRQ', 'company_id': 283, 'location_id': 193, 'category_id': 12, 'source_id': 16}, {'job_id': '5865697082', 'title': 'Registered Nurse RN Emergency Room Weekends', 'description': ['job_description'], 'salary_min': 57683.45, 'salary_max': 57683.45, 'salary_average': 57683.45, 'salary_predicted': 1, 'contract_type': None, 'contract_time': None, 'created_date': datetime.datetime(2026, 9, 1, 18, 58, 47), 'redirect_url': 'https://www.adzuna.com/land/ad/5865697082?se=8pfr9Yar8RGFQsSd8o16ag&utm_medium=api&utm_source=933b3abe&v=E7CF675B16B9D12802EFCC3AD0289FF8BBE7EC67', 'adref': 'eyJhbGciOiJIUzI1NiJ9.eyJpIjoiNTg2NTY5NzA4MiIsInMiOiI4cGZyOVlhcjhSR0ZRc1NkOG8xNmFnIn0.W3dpTiJ-I5ygIlDHbu8cIQj9HJ4VIImq5qR0RrvlPVM', 'company_id': 284, 'location_id': 194, 'category_id': 13, 'source_id': 16}, {'job_id': '5831417139', 'title': 'Telemetry Unit - Travel Registered Nurse - $2340 per week.', 'description': ['job_description'], 'salary_min': 0, 'salary_max': 121680, 'salary_average': 60840.0, 'salary_predicted': 1, 'contract_type': None, 'contract_time': None, 'created_date': datetime.datetime(2026, 8, 6, 22, 15, 15), 'redirect_url': 'https://www.adzuna.com/land/ad/5831417139?se=8pfr9Yar8RGFQsSd8o16ag&utm_medium=api&utm_source=933b3abe&v=0A8CC219F7A02D1A0D60136A5EAD00C52052B782', 'adref': 'eyJhbGciOiJIUzI1NiJ9.eyJpIjoiNTgzMTQxNzEzOSIsInMiOiI4cGZyOVlhcjhSR0ZRc1NkOG8xNmFnIn0.2T0fdYTH8xfSDRdodGbAf7LE_BNltTi3kULXwG_FEoo', 'company_id': 285, 'location_id': 195, 'category_id': 13, 'source_id': 16}, {'job_id': '5853238683', 'title': 'Registered Dental Hygienist', 'description': ['job_description'], 'salary_min': 145607.23, 'salary_max': 145607.23, 'salary_average': 145607.23, 'salary_predicted': 1, 'contract_type': None, 'contract_time': None, 'created_date': datetime.datetime(2026, 8, 22, 22, 52, 53), 'redirect_url': 'https://www.adzuna.com/land/ad/5853238683?se=8pfr9Yar8RGFQsSd8o16ag&utm_medium=api&utm_source=933b3abe&v=C7820AA7A7CE5AA20FB7147FE890AC62594AA4F5', 'adref': 'eyJhbGciOiJIUzI1NiJ9.eyJpIjoiNTg1MzIzODY4MyIsInMiOiI4cGZyOVlhcjhSR0ZRc1NkOG8xNmFnIn0.f8wCf7a7zFGRwZGPWzgvl9UwN6GaUbAYoSYRYYMYEQM', 'company_id': 286, 'location_id': 196, 'category_id': 13, 'source_id': 16}, {'job_id': '5835520320', 'title': 'Shop, Deliver, Earn Cash - Instacart', 'description': ['job_description'], 'salary_min': 69646.65, 'salary_max': 69646.65, 'salary_average': 69646.65, 'salary_predicted': 1, 'contract_type': None, 'contract_time': None, 'created_date': datetime.datetime(2026, 8, 10, 6, 59, 34), 'redirect_url': 'https://www.adzuna.com/land/ad/5835520320?se=8pfr9Yar8RGFQsSd8o16ag&utm_medium=api&utm_source=933b3abe&v=3D2901641C78A5D373635069D8895D7691800C6A', 'adref': 'eyJhbGciOiJIUzI1NiJ9.eyJpIjoiNTgzNTUyMDMyMCIsInMiOiI4cGZyOVlhcjhSR0ZRc1NkOG8xNmFnIn0.l0JXvjOmGW78zhW-swR2yQ-Sg9YnO09OllfSN2agpKk', 'company_id': 287, 'location_id': 197, 'category_id': 12, 'source_id': 16}, {'job_id': '5864379324', 'title': 'RN Acute Care Oncology', 'description': ['job_description'], 'salary_min': 59738.17, 'salary_max': 59738.17, 'salary_average': 59738.17, 'salary_predicted': 1, 'contract_type': None, 'contract_time': None, 'created_date': datetime.datetime(2026, 9, 1, 6, 41, 54), 'redirect_url': 'https://www.adzuna.com/land/ad/5864379324?se=8pfr9Yar8RGFQsSd8o16ag&utm_medium=api&utm_source=933b3abe&v=F2804F0A3712DBB7CD84567B843F7E4F5848D0FA', 'adref': 'eyJhbGciOiJIUzI1NiJ9.eyJpIjoiNTg2NDM3OTMyNCIsInMiOiI4cGZyOVlhcjhSR0ZRc1NkOG8xNmFnIn0.MsD6axY8V3tiobY_VuAy6Fpu0nDSoUUgAvK_Od2WuRE', 'company_id': 288, 'location_id': 198, 'category_id': 13, 'source_id': 16}, {'job_id': '5865708388', 'title': 'Registered Nurse Med Surg', 'description': ['job_description'], 'salary_min': 88180.93, 'salary_max': 88180.93, 'salary_average': 88180.93, 'salary_predicted': 1, 'contract_type': None, 'contract_time': None, 'created_date': datetime.datetime(2026, 9, 1, 19, 1, 17), 'redirect_url': 'https://www.adzuna.com/land/ad/5865708388?se=8pfr9Yar8RGFQsSd8o16ag&utm_medium=api&utm_source=933b3abe&v=2889E4476740177ECBB0824C38D8324CE1C4EAAC', 'adref': 'eyJhbGciOiJIUzI1NiJ9.eyJpIjoiNTg2NTcwODM4OCIsInMiOiI4cGZyOVlhcjhSR0ZRc1NkOG8xNmFnIn0.ecJ8SQAOw8jYETQ12sPJNhRDnBVbQPTPq1FR3GH0ARI', 'company_id': 289, 'location_id': 199, 'category_id': 13, 'source_id': 16}, {'job_id': '5865758163', 'title': 'Radiology Tech', 'description': ['job_description'], 'salary_min': 167524.5, 'salary_max': 167524.5, 'salary_average': 167524.5, 'salary_predicted': 1, 'contract_type': None, 'contract_time': None, 'created_date': datetime.datetime(2026, 9, 1, 19, 16, 13), 'redirect_url': 'https://www.adzuna.com/land/ad/5865758163?se=8pfr9Yar8RGFQsSd8o16ag&utm_medium=api&utm_source=933b3abe&v=090C6AAECF8311C083EF847047C6EF5A1A230322', 'adref': 'eyJhbGciOiJIUzI1NiJ9.eyJpIjoiNTg2NTc1ODE2MyIsInMiOiI4cGZyOVlhcjhSR0ZRc1NkOG8xNmFnIn0.g6faDGYsb2zLw1sXZHqtOlZiCiUlzIgrds95gc7MQN0', 'company_id': 290, 'location_id': 200, 'category_id': 13, 'source_id': 16}  ... displaying 10 of 20 total bound parameter sets ...  {'job_id': '5828639805', 'title': 'CDL-A Drivers - No Touch Freight - Recent Grads Welcome!', 'description': ['job_description'], 'salary_min': 92675.91, 'salary_max': 92675.91, 'salary_average': 92675.91, 'salary_predicted': 1, 'contract_type': None, 'contract_time': None, 'created_date': datetime.datetime(2026, 8, 4, 22, 25, 31), 'redirect_url': 'https://www.adzuna.com/land/ad/5828639805?se=8pfr9Yar8RGFQsSd8o16ag&utm_medium=api&utm_source=933b3abe&v=0E87E0D4E9AFA6ED93E69882A7E5BB5F036F234A', 'adref': 'eyJhbGciOiJIUzI1NiJ9.eyJzIjoiOHBmcjlZYXI4UkdGUXNTZDhvMTZhZyIsImkiOiI1ODI4NjM5ODA1In0.TEkaFFnM83LMj7pqO9AXZnFAQnUGg4vFTziP9TKwRjA', 'company_id': 299, 'location_id': 211, 'category_id': 16, 'source_id': 16}, {'job_id': '5863743187', 'title': 'Registered Nurse Cardiovascular', 'description': ['job_description'], 'salary_min': 76397.69, 'salary_max': 76397.69, 'salary_average': 76397.69, 'salary_predicted': 1, 'contract_type': None, 'contract_time': None, 'created_date': datetime.datetime(2026, 8, 31, 22, 39, 49), 'redirect_url': 'https://www.adzuna.com/land/ad/5863743187?se=8pfr9Yar8RGFQsSd8o16ag&utm_medium=api&utm_source=933b3abe&v=CFA076BCD0CF45FDF40182EC67BE0895C1F6795F', 'adref': 'eyJhbGciOiJIUzI1NiJ9.eyJzIjoiOHBmcjlZYXI4UkdGUXNTZDhvMTZhZyIsImkiOiI1ODYzNzQzMTg3In0.XVNLngfjUvoAZIs0sy1qZ5E5oqRAzHejmPDiyLNsbCs', 'company_id': 291, 'location_id': 212, 'category_id': 13, 'source_id': 16}]]
+(Background on this error at: https://sqlalche.me/e/20/9h9h)
+2026-09-08 16:13:24,666 | INFO | etl.validator | Validated 20 of 20 job records.
+2026-09-08 16:13:24,667 | INFO | etl.transformer | Extracted 17 unique companies.
+2026-09-08 16:13:24,667 | INFO | etl.transformer | Extracted 20 unique locations.
+2026-09-08 16:13:24,667 | INFO | etl.transformer | Extracted 5 unique categories.
+2026-09-08 16:13:24,670 | INFO | etl.transformer | Extracted 20 unique job titles.
+2026-09-08 16:13:24,670 | INFO | etl.transformer | Transformation completed successfully.
+2026-09-08 16:13:24,671 | INFO | etl.loader | Starting data loading process.
+2026-09-08 16:13:24,714 | INFO | etl.loader | Inserted new source: Adzuna
+2026-09-08 16:13:24,718 | INFO | etl.loader | Inserted 17 new company(s).
+2026-09-08 16:13:24,726 | INFO | etl.loader | Inserted 20 new locations
+2026-09-08 16:13:24,738 | INFO | etl.loader | Inserted 5 new categories
+2026-09-08 16:13:24,741 | INFO | etl.loader | Built company lookup with 17 entries.
+2026-09-08 16:13:24,742 | INFO | etl.loader | Built location lookup with 20 entries.
+2026-09-08 16:13:24,743 | INFO | etl.loader | Built category lookup with 5 entries.
+2026-09-08 16:13:24,746 | INFO | etl.loader | Built source lookup with 1 entries.
+2026-09-08 16:13:24,750 | INFO | etl.loader | Inserted 20 new jobs.
+2026-09-08 16:13:24,758 | ERROR | etl.loader | Database loading failed: (pymysql.err.DataError) (1264, "Out of range value for column 'job_id' at row 1")
+[SQL: INSERT INTO jobs (job_id, title, description, salary_min, salary_max, salary_average, salary_predicted, contract_type, contract_time, created_date, redirect_url, adref, company_id, location_id, category_id, source_id) VALUES (%(job_id)s, %(title)s, %(description)s, %(salary_min)s, %(salary_max)s, %(salary_average)s, %(salary_predicted)s, %(contract_type)s, %(contract_time)s, %(created_date)s, %(redirect_url)s, %(adref)s, %(company_id)s, %(location_id)s, %(category_id)s, %(source_id)s)]
+[parameters: [{'job_id': '5791476744', 'title': 'Assistant Manager', 'description': "Pay Range: $20.00 - $22.00 / hour As the team at Zaxbys expands, we're saving a seat for you! To our guests, Zaxbys is more than just a place to eat  ... (202 characters truncated) ... estaurant delivers great experiences to guests while maintaining operational standards. You will manage the daily operations of the restaurant ensur…", 'salary_min': 38129.23, 'salary_max': 38129.23, 'salary_average': 38129.23, 'salary_predicted': 1, 'contract_type': None, 'contract_time': None, 'created_date': datetime.datetime(2026, 7, 7, 18, 33, 28), 'redirect_url': 'https://www.adzuna.com/land/ad/5791476744?se=ujzREYer8RGrJbB9ud-Meg&utm_medium=api&utm_source=933b3abe&v=4BC4199BF2F43FF810FD9733D43C6B139F139C32', 'adref': 'eyJhbGciOiJIUzI1NiJ9.eyJpIjoiNTc5MTQ3Njc0NCIsInMiOiJ1anpSRVllcjhSR3JKYkI5dWQtTWVnIn0.yOUiqst3oDrXPoQmO7l7nwe-iDCx_1IR4XnQjj4G2oY', 'company_id': 300, 'location_id': 213, 'category_id': 17, 'source_id': 17}, {'job_id': '5865697082', 'title': 'Registered Nurse RN Emergency Room Weekends', 'description': "Currently offering a $10, 000 sign on bonus for experienced RN's. Sign on for eligible candidates cannot be combined with other bonuses or HCA loan/s ... (202 characters truncated) ... ct manager or more formal opportunities through hospital councils and national nursing initiatives. You'll help shape decisions that elevate both pa…", 'salary_min': 57683.45, 'salary_max': 57683.45, 'salary_average': 57683.45, 'salary_predicted': 1, 'contract_type': None, 'contract_time': None, 'created_date': datetime.datetime(2026, 9, 1, 18, 58, 47), 'redirect_url': 'https://www.adzuna.com/land/ad/5865697082?se=ujzREYer8RGrJbB9ud-Meg&utm_medium=api&utm_source=933b3abe&v=E7CF675B16B9D12802EFCC3AD0289FF8BBE7EC67', 'adref': 'eyJhbGciOiJIUzI1NiJ9.eyJzIjoidWp6UkVZZXI4UkdySmJCOXVkLU1lZyIsImkiOiI1ODY1Njk3MDgyIn0.O62gYDQaCkBKZBUAffHBBHh-2BPzjhfs00CEUnApUT0', 'company_id': 301, 'location_id': 214, 'category_id': 18, 'source_id': 17}, {'job_id': '5831417139', 'title': 'Telemetry Unit - Travel Registered Nurse - $2340 per week.', 'description': 'Trusted is seeking an experienced nurse for this exciting travel nursing assignment. Trusted has streamlined the travel nursing experience by enablin ... (202 characters truncated) ... thousands of nurses across the country who have already made the switch to a more modern way to work. Shift: 6:45 PM - 7:15 AM Experience: • 12 mont…', 'salary_min': 0, 'salary_max': 121680, 'salary_average': 60840.0, 'salary_predicted': 1, 'contract_type': None, 'contract_time': None, 'created_date': datetime.datetime(2026, 8, 6, 22, 15, 15), 'redirect_url': 'https://www.adzuna.com/land/ad/5831417139?se=ujzREYer8RGrJbB9ud-Meg&utm_medium=api&utm_source=933b3abe&v=0A8CC219F7A02D1A0D60136A5EAD00C52052B782', 'adref': 'eyJhbGciOiJIUzI1NiJ9.eyJzIjoidWp6UkVZZXI4UkdySmJCOXVkLU1lZyIsImkiOiI1ODMxNDE3MTM5In0.DWBt2eUXVjK2bDw6rs6CNryP_cDsBvElwIOM5k9QYcc', 'company_id': 302, 'location_id': 215, 'category_id': 18, 'source_id': 17}, {'job_id': '5853238683', 'title': 'Registered Dental Hygienist', 'description': 'Darien, CT | Full-Time | Flexible Schedule Are you a Registered Dental Hygienist who takes pride in exceptional patient care, building genuine relati ... (202 characters truncated) ... gienist (RDH) to join our team in Darien, CT. This is an exciting opportunity for a hygienist who wants to work in a comprehensive dental practice o…', 'salary_min': 145607.23, 'salary_max': 145607.23, 'salary_average': 145607.23, 'salary_predicted': 1, 'contract_type': None, 'contract_time': None, 'created_date': datetime.datetime(2026, 8, 22, 22, 52, 53), 'redirect_url': 'https://www.adzuna.com/land/ad/5853238683?se=ujzREYer8RGrJbB9ud-Meg&utm_medium=api&utm_source=933b3abe&v=C7820AA7A7CE5AA20FB7147FE890AC62594AA4F5', 'adref': 'eyJhbGciOiJIUzI1NiJ9.eyJpIjoiNTg1MzIzODY4MyIsInMiOiJ1anpSRVllcjhSR3JKYkI5dWQtTWVnIn0.wLqZhS5PURTOGoQ4ZyZVNJFIxX7JHk7TfslFPFvbVeA', 'company_id': 303, 'location_id': 216, 'category_id': 18, 'source_id': 17}, {'job_id': '5835520320', 'title': 'Shop, Deliver, Earn Cash - Instacart', 'description': 'FULL-SERVICE SHOPPER Start earning quickly with a flexible schedule Shopping with Instacart is more than grocery delivery. Shoppers help make our wor ... (202 characters truncated) ... where everyone has access to the food they love. As a full-service shopper, you’ll receive orders through the Shopper app to shop from stores in you…', 'salary_min': 69646.65, 'salary_max': 69646.65, 'salary_average': 69646.65, 'salary_predicted': 1, 'contract_type': None, 'contract_time': None, 'created_date': datetime.datetime(2026, 8, 10, 6, 59, 34), 'redirect_url': 'https://www.adzuna.com/land/ad/5835520320?se=ujzREYer8RGrJbB9ud-Meg&utm_medium=api&utm_source=933b3abe&v=3D2901641C78A5D373635069D8895D7691800C6A', 'adref': 'eyJhbGciOiJIUzI1NiJ9.eyJpIjoiNTgzNTUyMDMyMCIsInMiOiJ1anpSRVllcjhSR3JKYkI5dWQtTWVnIn0.utqhqSk2ZfAqKtRDk7iEwzAO7ssRK0DS1eTsaVaiVxU', 'company_id': 304, 'location_id': 217, 'category_id': 17, 'source_id': 17}, {'job_id': '5864379324', 'title': 'RN Acute Care Oncology', 'description': "Description Location: UCHealth Anschutz Inpatient Pavilion, Aurora - CO Department: Oncology FTE: Part Time, 48.00 hours per pay period (2 weeks) Shi ... (202 characters truncated) ...  more - our Night Shift Incentive Program pays $1,600 quarterly ($6,400/year) to full-time night shift RNs and LPNs Minimum Requirements: Graduate o…", 'salary_min': 59738.17, 'salary_max': 59738.17, 'salary_average': 59738.17, 'salary_predicted': 1, 'contract_type': None, 'contract_time': None, 'created_date': datetime.datetime(2026, 9, 1, 6, 41, 54), 'redirect_url': 'https://www.adzuna.com/land/ad/5864379324?se=ujzREYer8RGrJbB9ud-Meg&utm_medium=api&utm_source=933b3abe&v=F2804F0A3712DBB7CD84567B843F7E4F5848D0FA', 'adref': 'eyJhbGciOiJIUzI1NiJ9.eyJzIjoidWp6UkVZZXI4UkdySmJCOXVkLU1lZyIsImkiOiI1ODY0Mzc5MzI0In0.S0E-8BeTCQt7HbLnkUl46Y9G0FwCHXz5KdWHyAiwMGM', 'company_id': 305, 'location_id': 218, 'category_id': 18, 'source_id': 17}, {'job_id': '5865708388', 'title': 'Registered Nurse Med Surg', 'description': "Stroke response times nearly half of the national average. Cutting-edge SPOT Technology that detects sepsis earlier than the human eye. An Enhanced S ... (202 characters truncated) ... ring our nursing teams in a collaborative effort to give people a healthier tomorrow. Join us! Job Summary and Qualifications As a Registered Nurse,…", 'salary_min': 88180.93, 'salary_max': 88180.93, 'salary_average': 88180.93, 'salary_predicted': 1, 'contract_type': None, 'contract_time': None, 'created_date': datetime.datetime(2026, 9, 1, 19, 1, 17), 'redirect_url': 'https://www.adzuna.com/land/ad/5865708388?se=ujzREYer8RGrJbB9ud-Meg&utm_medium=api&utm_source=933b3abe&v=2889E4476740177ECBB0824C38D8324CE1C4EAAC', 'adref': 'eyJhbGciOiJIUzI1NiJ9.eyJpIjoiNTg2NTcwODM4OCIsInMiOiJ1anpSRVllcjhSR3JKYkI5dWQtTWVnIn0.MZMmMJwn0-Ic0MllpcRajmAc3Y-28IkcpF_bkNMgmHc', 'company_id': 306, 'location_id': 219, 'category_id': 18, 'source_id': 17}, {'job_id': '5865758163', 'title': 'Radiology Tech', 'description': 'Medical City Dallas Radiology Tech May be eligible for a sign on bonus up to $15,000 Introduction Are you passionate about the patient experience? At ... (202 characters truncated) ...  Dallas, offers a total rewards package that supports the health, life, career and retirement of our colleagues. The available plans and programs in…', 'salary_min': 167524.5, 'salary_max': 167524.5, 'salary_average': 167524.5, 'salary_predicted': 1, 'contract_type': None, 'contract_time': None, 'created_date': datetime.datetime(2026, 9, 1, 19, 16, 13), 'redirect_url': 'https://www.adzuna.com/land/ad/5865758163?se=ujzREYer8RGrJbB9ud-Meg&utm_medium=api&utm_source=933b3abe&v=090C6AAECF8311C083EF847047C6EF5A1A230322', 'adref': 'eyJhbGciOiJIUzI1NiJ9.eyJzIjoidWp6UkVZZXI4UkdySmJCOXVkLU1lZyIsImkiOiI1ODY1NzU4MTYzIn0.EBdnOHFZJLkMOGb2TlBYiAgRF3qrlVg_cWRPwHFDhSM', 'company_id': 307, 'location_id': 220, 'category_id': 18, 'source_id': 17}  ... displaying 10 of 20 total bound parameter sets ...  {'job_id': '5828639805', 'title': 'CDL-A Drivers - No Touch Freight - Recent Grads Welcome!', 'description': 'Dedicated CDL-A Truck Drivers – No Touch Freight – Earn $87,800-$100,000 Annually Pay & Benefits: Average Weekly Pay of $1,690-$1,800 Top Drivers Ear ... (202 characters truncated) ... ife Insurance, 401(k) Assigned Late-Model Trucks Job Details: Home Throughout the Week No Touch Freight/Drop & Hook Consistent Routes & Set Schedule…', 'salary_min': 92675.91, 'salary_max': 92675.91, 'salary_average': 92675.91, 'salary_predicted': 1, 'contract_type': None, 'contract_time': None, 'created_date': datetime.datetime(2026, 8, 4, 22, 25, 31), 'redirect_url': 'https://www.adzuna.com/land/ad/5828639805?se=ujzREYer8RGrJbB9ud-Meg&utm_medium=api&utm_source=933b3abe&v=0E87E0D4E9AFA6ED93E69882A7E5BB5F036F234A', 'adref': 'eyJhbGciOiJIUzI1NiJ9.eyJpIjoiNTgyODYzOTgwNSIsInMiOiJ1anpSRVllcjhSR3JKYkI5dWQtTWVnIn0.vsJ_9J01OTraZyBUnIl0K2NiHWwBQFNaUwVXwgRpDYA', 'company_id': 316, 'location_id': 231, 'category_id': 21, 'source_id': 17}, {'job_id': '5863743187', 'title': 'Registered Nurse Cardiovascular', 'description': 'Your future role at a glance Location: Waco, TX Facility : Ascension Providence Medical Center Department/Specialty: Cardiovascular Schedule : Day sh ... (202 characters truncated) ... atholic health system with a culture and associate experience grounded in service, growth, care and connection. We empower our 97,000 associates to …', 'salary_min': 76397.69, 'salary_max': 76397.69, 'salary_average': 76397.69, 'salary_predicted': 1, 'contract_type': None, 'contract_time': None, 'created_date': datetime.datetime(2026, 8, 31, 22, 39, 49), 'redirect_url': 'https://www.adzuna.com/land/ad/5863743187?se=ujzREYer8RGrJbB9ud-Meg&utm_medium=api&utm_source=933b3abe&v=CFA076BCD0CF45FDF40182EC67BE0895C1F6795F', 'adref': 'eyJhbGciOiJIUzI1NiJ9.eyJpIjoiNTg2Mzc0MzE4NyIsInMiOiJ1anpSRVllcjhSR3JKYkI5dWQtTWVnIn0.yr5GbI7BQ_xb9e0baECD6tWnzLTrPY0FHvCe-k-c5Xw', 'company_id': 308, 'location_id': 232, 'category_id': 18, 'source_id': 17}]]
+(Background on this error at: https://sqlalche.me/e/20/9h9h)
+Traceback (most recent call last):
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1938, in _exec_single_context
+    self.dialect.do_executemany(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor,
+        ^^^^^^^
+    ...<2 lines>...
+        context,
+        ^^^^^^^^
+    )
+    ^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\dialects\mysql\mysqldb.py", line 197, in do_executemany
+    rowcount = cursor.executemany(statement, parameters)
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\cursors.py", line 188, in executemany
+    return self._do_execute_many(
+           ~~~~~~~~~~~~~~~~~~~~~^
+        q_prefix,
+        ^^^^^^^^^
+    ...<4 lines>...
+        self._get_db().encoding,
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\cursors.py", line 226, in _do_execute_many
+    rows += self.execute(sql + postfix)
+            ~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\cursors.py", line 159, in execute
+    result = self._query(query)
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\cursors.py", line 330, in _query
+    conn.query(q)
+    ~~~~~~~~~~^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\connections.py", line 582, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+                          ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\connections.py", line 847, in _read_query_result
+    result.read()
+    ~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\connections.py", line 1245, in read
+    first_packet = self.connection._read_packet()
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\connections.py", line 803, in _read_packet
+    packet.raise_for_error()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\err.py", line 154, in raise_mysql_exception
+    raise errorclass(errno, errval, sqlstate=sqlstate)
+pymysql.err.DataError: (1264, "Out of range value for column 'job_id' at row 1")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Portfolio\labor-market-intelligence-platform\src\etl\loader.py", line 38, in load
+    session.commit()
+    ~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\session.py", line 2035, in commit
+    trans.commit(_to_root=True)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "<string>", line 2, in commit
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\state_changes.py", line 137, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\session.py", line 1316, in commit
+    self._prepare_impl()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "<string>", line 2, in _prepare_impl
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\state_changes.py", line 137, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\session.py", line 1290, in _prepare_impl
+    self.session.flush()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\session.py", line 4353, in flush
+    self._flush(objects)
+    ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\session.py", line 4488, in _flush
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 122, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\session.py", line 4449, in _flush
+    flush_context.execute()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\unitofwork.py", line 465, in execute
+    rec.execute(self)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\unitofwork.py", line 641, in execute
+    util.preloaded.orm_persistence.save_obj(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self.mapper,
+        ^^^^^^^^^^^^
+        uow.states_for_mapper_hierarchy(self.mapper, False, False),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        uow,
+        ^^^^
+    )
+    ^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\persistence.py", line 94, in save_obj
+    _emit_insert_statements(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        base_mapper,
+        ^^^^^^^^^^^^
+    ...<3 lines>...
+        insert,
+        ^^^^^^^
+    )
+    ^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\persistence.py", line 1049, in _emit_insert_statements
+    result = connection.execute(
+        statement, multiparams, execution_options=execution_options
+    )
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1421, in execute
+    return meth(
+        self,
+        distilled_parameters,
+        execution_options or NO_OPTIONS,
+    )
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\sql\elements.py", line 526, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self, distilled_params, execution_options
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1643, in _execute_clauseelement
+    ret = self._execute_context(
+        dialect,
+    ...<8 lines>...
+        cache_hit=cache_hit,
+    )
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1848, in _execute_context
+    return self._exec_single_context(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        dialect, context, statement, parameters
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1988, in _exec_single_context
+    self._handle_dbapi_exception(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        e, str_statement, effective_parameters, cursor, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 2365, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1938, in _exec_single_context
+    self.dialect.do_executemany(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor,
+        ^^^^^^^
+    ...<2 lines>...
+        context,
+        ^^^^^^^^
+    )
+    ^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\dialects\mysql\mysqldb.py", line 197, in do_executemany
+    rowcount = cursor.executemany(statement, parameters)
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\cursors.py", line 188, in executemany
+    return self._do_execute_many(
+           ~~~~~~~~~~~~~~~~~~~~~^
+        q_prefix,
+        ^^^^^^^^^
+    ...<4 lines>...
+        self._get_db().encoding,
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\cursors.py", line 226, in _do_execute_many
+    rows += self.execute(sql + postfix)
+            ~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\cursors.py", line 159, in execute
+    result = self._query(query)
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\cursors.py", line 330, in _query
+    conn.query(q)
+    ~~~~~~~~~~^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\connections.py", line 582, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+                          ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\connections.py", line 847, in _read_query_result
+    result.read()
+    ~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\connections.py", line 1245, in read
+    first_packet = self.connection._read_packet()
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\connections.py", line 803, in _read_packet
+    packet.raise_for_error()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\err.py", line 154, in raise_mysql_exception
+    raise errorclass(errno, errval, sqlstate=sqlstate)
+sqlalchemy.exc.DataError: (pymysql.err.DataError) (1264, "Out of range value for column 'job_id' at row 1")
+[SQL: INSERT INTO jobs (job_id, title, description, salary_min, salary_max, salary_average, salary_predicted, contract_type, contract_time, created_date, redirect_url, adref, company_id, location_id, category_id, source_id) VALUES (%(job_id)s, %(title)s, %(description)s, %(salary_min)s, %(salary_max)s, %(salary_average)s, %(salary_predicted)s, %(contract_type)s, %(contract_time)s, %(created_date)s, %(redirect_url)s, %(adref)s, %(company_id)s, %(location_id)s, %(category_id)s, %(source_id)s)]
+[parameters: [{'job_id': '5791476744', 'title': 'Assistant Manager', 'description': "Pay Range: $20.00 - $22.00 / hour As the team at Zaxbys expands, we're saving a seat for you! To our guests, Zaxbys is more than just a place to eat  ... (202 characters truncated) ... estaurant delivers great experiences to guests while maintaining operational standards. You will manage the daily operations of the restaurant ensur…", 'salary_min': 38129.23, 'salary_max': 38129.23, 'salary_average': 38129.23, 'salary_predicted': 1, 'contract_type': None, 'contract_time': None, 'created_date': datetime.datetime(2026, 7, 7, 18, 33, 28), 'redirect_url': 'https://www.adzuna.com/land/ad/5791476744?se=ujzREYer8RGrJbB9ud-Meg&utm_medium=api&utm_source=933b3abe&v=4BC4199BF2F43FF810FD9733D43C6B139F139C32', 'adref': 'eyJhbGciOiJIUzI1NiJ9.eyJpIjoiNTc5MTQ3Njc0NCIsInMiOiJ1anpSRVllcjhSR3JKYkI5dWQtTWVnIn0.yOUiqst3oDrXPoQmO7l7nwe-iDCx_1IR4XnQjj4G2oY', 'company_id': 300, 'location_id': 213, 'category_id': 17, 'source_id': 17}, {'job_id': '5865697082', 'title': 'Registered Nurse RN Emergency Room Weekends', 'description': "Currently offering a $10, 000 sign on bonus for experienced RN's. Sign on for eligible candidates cannot be combined with other bonuses or HCA loan/s ... (202 characters truncated) ... ct manager or more formal opportunities through hospital councils and national nursing initiatives. You'll help shape decisions that elevate both pa…", 'salary_min': 57683.45, 'salary_max': 57683.45, 'salary_average': 57683.45, 'salary_predicted': 1, 'contract_type': None, 'contract_time': None, 'created_date': datetime.datetime(2026, 9, 1, 18, 58, 47), 'redirect_url': 'https://www.adzuna.com/land/ad/5865697082?se=ujzREYer8RGrJbB9ud-Meg&utm_medium=api&utm_source=933b3abe&v=E7CF675B16B9D12802EFCC3AD0289FF8BBE7EC67', 'adref': 'eyJhbGciOiJIUzI1NiJ9.eyJzIjoidWp6UkVZZXI4UkdySmJCOXVkLU1lZyIsImkiOiI1ODY1Njk3MDgyIn0.O62gYDQaCkBKZBUAffHBBHh-2BPzjhfs00CEUnApUT0', 'company_id': 301, 'location_id': 214, 'category_id': 18, 'source_id': 17}, {'job_id': '5831417139', 'title': 'Telemetry Unit - Travel Registered Nurse - $2340 per week.', 'description': 'Trusted is seeking an experienced nurse for this exciting travel nursing assignment. Trusted has streamlined the travel nursing experience by enablin ... (202 characters truncated) ... thousands of nurses across the country who have already made the switch to a more modern way to work. Shift: 6:45 PM - 7:15 AM Experience: • 12 mont…', 'salary_min': 0, 'salary_max': 121680, 'salary_average': 60840.0, 'salary_predicted': 1, 'contract_type': None, 'contract_time': None, 'created_date': datetime.datetime(2026, 8, 6, 22, 15, 15), 'redirect_url': 'https://www.adzuna.com/land/ad/5831417139?se=ujzREYer8RGrJbB9ud-Meg&utm_medium=api&utm_source=933b3abe&v=0A8CC219F7A02D1A0D60136A5EAD00C52052B782', 'adref': 'eyJhbGciOiJIUzI1NiJ9.eyJzIjoidWp6UkVZZXI4UkdySmJCOXVkLU1lZyIsImkiOiI1ODMxNDE3MTM5In0.DWBt2eUXVjK2bDw6rs6CNryP_cDsBvElwIOM5k9QYcc', 'company_id': 302, 'location_id': 215, 'category_id': 18, 'source_id': 17}, {'job_id': '5853238683', 'title': 'Registered Dental Hygienist', 'description': 'Darien, CT | Full-Time | Flexible Schedule Are you a Registered Dental Hygienist who takes pride in exceptional patient care, building genuine relati ... (202 characters truncated) ... gienist (RDH) to join our team in Darien, CT. This is an exciting opportunity for a hygienist who wants to work in a comprehensive dental practice o…', 'salary_min': 145607.23, 'salary_max': 145607.23, 'salary_average': 145607.23, 'salary_predicted': 1, 'contract_type': None, 'contract_time': None, 'created_date': datetime.datetime(2026, 8, 22, 22, 52, 53), 'redirect_url': 'https://www.adzuna.com/land/ad/5853238683?se=ujzREYer8RGrJbB9ud-Meg&utm_medium=api&utm_source=933b3abe&v=C7820AA7A7CE5AA20FB7147FE890AC62594AA4F5', 'adref': 'eyJhbGciOiJIUzI1NiJ9.eyJpIjoiNTg1MzIzODY4MyIsInMiOiJ1anpSRVllcjhSR3JKYkI5dWQtTWVnIn0.wLqZhS5PURTOGoQ4ZyZVNJFIxX7JHk7TfslFPFvbVeA', 'company_id': 303, 'location_id': 216, 'category_id': 18, 'source_id': 17}, {'job_id': '5835520320', 'title': 'Shop, Deliver, Earn Cash - Instacart', 'description': 'FULL-SERVICE SHOPPER Start earning quickly with a flexible schedule Shopping with Instacart is more than grocery delivery. Shoppers help make our wor ... (202 characters truncated) ... where everyone has access to the food they love. As a full-service shopper, you’ll receive orders through the Shopper app to shop from stores in you…', 'salary_min': 69646.65, 'salary_max': 69646.65, 'salary_average': 69646.65, 'salary_predicted': 1, 'contract_type': None, 'contract_time': None, 'created_date': datetime.datetime(2026, 8, 10, 6, 59, 34), 'redirect_url': 'https://www.adzuna.com/land/ad/5835520320?se=ujzREYer8RGrJbB9ud-Meg&utm_medium=api&utm_source=933b3abe&v=3D2901641C78A5D373635069D8895D7691800C6A', 'adref': 'eyJhbGciOiJIUzI1NiJ9.eyJpIjoiNTgzNTUyMDMyMCIsInMiOiJ1anpSRVllcjhSR3JKYkI5dWQtTWVnIn0.utqhqSk2ZfAqKtRDk7iEwzAO7ssRK0DS1eTsaVaiVxU', 'company_id': 304, 'location_id': 217, 'category_id': 17, 'source_id': 17}, {'job_id': '5864379324', 'title': 'RN Acute Care Oncology', 'description': "Description Location: UCHealth Anschutz Inpatient Pavilion, Aurora - CO Department: Oncology FTE: Part Time, 48.00 hours per pay period (2 weeks) Shi ... (202 characters truncated) ...  more - our Night Shift Incentive Program pays $1,600 quarterly ($6,400/year) to full-time night shift RNs and LPNs Minimum Requirements: Graduate o…", 'salary_min': 59738.17, 'salary_max': 59738.17, 'salary_average': 59738.17, 'salary_predicted': 1, 'contract_type': None, 'contract_time': None, 'created_date': datetime.datetime(2026, 9, 1, 6, 41, 54), 'redirect_url': 'https://www.adzuna.com/land/ad/5864379324?se=ujzREYer8RGrJbB9ud-Meg&utm_medium=api&utm_source=933b3abe&v=F2804F0A3712DBB7CD84567B843F7E4F5848D0FA', 'adref': 'eyJhbGciOiJIUzI1NiJ9.eyJzIjoidWp6UkVZZXI4UkdySmJCOXVkLU1lZyIsImkiOiI1ODY0Mzc5MzI0In0.S0E-8BeTCQt7HbLnkUl46Y9G0FwCHXz5KdWHyAiwMGM', 'company_id': 305, 'location_id': 218, 'category_id': 18, 'source_id': 17}, {'job_id': '5865708388', 'title': 'Registered Nurse Med Surg', 'description': "Stroke response times nearly half of the national average. Cutting-edge SPOT Technology that detects sepsis earlier than the human eye. An Enhanced S ... (202 characters truncated) ... ring our nursing teams in a collaborative effort to give people a healthier tomorrow. Join us! Job Summary and Qualifications As a Registered Nurse,…", 'salary_min': 88180.93, 'salary_max': 88180.93, 'salary_average': 88180.93, 'salary_predicted': 1, 'contract_type': None, 'contract_time': None, 'created_date': datetime.datetime(2026, 9, 1, 19, 1, 17), 'redirect_url': 'https://www.adzuna.com/land/ad/5865708388?se=ujzREYer8RGrJbB9ud-Meg&utm_medium=api&utm_source=933b3abe&v=2889E4476740177ECBB0824C38D8324CE1C4EAAC', 'adref': 'eyJhbGciOiJIUzI1NiJ9.eyJpIjoiNTg2NTcwODM4OCIsInMiOiJ1anpSRVllcjhSR3JKYkI5dWQtTWVnIn0.MZMmMJwn0-Ic0MllpcRajmAc3Y-28IkcpF_bkNMgmHc', 'company_id': 306, 'location_id': 219, 'category_id': 18, 'source_id': 17}, {'job_id': '5865758163', 'title': 'Radiology Tech', 'description': 'Medical City Dallas Radiology Tech May be eligible for a sign on bonus up to $15,000 Introduction Are you passionate about the patient experience? At ... (202 characters truncated) ...  Dallas, offers a total rewards package that supports the health, life, career and retirement of our colleagues. The available plans and programs in…', 'salary_min': 167524.5, 'salary_max': 167524.5, 'salary_average': 167524.5, 'salary_predicted': 1, 'contract_type': None, 'contract_time': None, 'created_date': datetime.datetime(2026, 9, 1, 19, 16, 13), 'redirect_url': 'https://www.adzuna.com/land/ad/5865758163?se=ujzREYer8RGrJbB9ud-Meg&utm_medium=api&utm_source=933b3abe&v=090C6AAECF8311C083EF847047C6EF5A1A230322', 'adref': 'eyJhbGciOiJIUzI1NiJ9.eyJzIjoidWp6UkVZZXI4UkdySmJCOXVkLU1lZyIsImkiOiI1ODY1NzU4MTYzIn0.EBdnOHFZJLkMOGb2TlBYiAgRF3qrlVg_cWRPwHFDhSM', 'company_id': 307, 'location_id': 220, 'category_id': 18, 'source_id': 17}  ... displaying 10 of 20 total bound parameter sets ...  {'job_id': '5828639805', 'title': 'CDL-A Drivers - No Touch Freight - Recent Grads Welcome!', 'description': 'Dedicated CDL-A Truck Drivers – No Touch Freight – Earn $87,800-$100,000 Annually Pay & Benefits: Average Weekly Pay of $1,690-$1,800 Top Drivers Ear ... (202 characters truncated) ... ife Insurance, 401(k) Assigned Late-Model Trucks Job Details: Home Throughout the Week No Touch Freight/Drop & Hook Consistent Routes & Set Schedule…', 'salary_min': 92675.91, 'salary_max': 92675.91, 'salary_average': 92675.91, 'salary_predicted': 1, 'contract_type': None, 'contract_time': None, 'created_date': datetime.datetime(2026, 8, 4, 22, 25, 31), 'redirect_url': 'https://www.adzuna.com/land/ad/5828639805?se=ujzREYer8RGrJbB9ud-Meg&utm_medium=api&utm_source=933b3abe&v=0E87E0D4E9AFA6ED93E69882A7E5BB5F036F234A', 'adref': 'eyJhbGciOiJIUzI1NiJ9.eyJpIjoiNTgyODYzOTgwNSIsInMiOiJ1anpSRVllcjhSR3JKYkI5dWQtTWVnIn0.vsJ_9J01OTraZyBUnIl0K2NiHWwBQFNaUwVXwgRpDYA', 'company_id': 316, 'location_id': 231, 'category_id': 21, 'source_id': 17}, {'job_id': '5863743187', 'title': 'Registered Nurse Cardiovascular', 'description': 'Your future role at a glance Location: Waco, TX Facility : Ascension Providence Medical Center Department/Specialty: Cardiovascular Schedule : Day sh ... (202 characters truncated) ... atholic health system with a culture and associate experience grounded in service, growth, care and connection. We empower our 97,000 associates to …', 'salary_min': 76397.69, 'salary_max': 76397.69, 'salary_average': 76397.69, 'salary_predicted': 1, 'contract_type': None, 'contract_time': None, 'created_date': datetime.datetime(2026, 8, 31, 22, 39, 49), 'redirect_url': 'https://www.adzuna.com/land/ad/5863743187?se=ujzREYer8RGrJbB9ud-Meg&utm_medium=api&utm_source=933b3abe&v=CFA076BCD0CF45FDF40182EC67BE0895C1F6795F', 'adref': 'eyJhbGciOiJIUzI1NiJ9.eyJpIjoiNTg2Mzc0MzE4NyIsInMiOiJ1anpSRVllcjhSR3JKYkI5dWQtTWVnIn0.yr5GbI7BQ_xb9e0baECD6tWnzLTrPY0FHvCe-k-c5Xw', 'company_id': 308, 'location_id': 232, 'category_id': 18, 'source_id': 17}]]
+(Background on this error at: https://sqlalche.me/e/20/9h9h)
+2026-09-08 16:19:00,474 | INFO | etl.validator | Validated 20 of 20 job records.
+2026-09-08 16:19:00,475 | INFO | etl.transformer | Extracted 19 unique companies.
+2026-09-08 16:19:00,476 | INFO | etl.transformer | Extracted 20 unique locations.
+2026-09-08 16:19:00,476 | INFO | etl.transformer | Extracted 6 unique categories.
+2026-09-08 16:19:00,481 | INFO | etl.transformer | Extracted 20 unique job titles.
+2026-09-08 16:19:00,481 | INFO | etl.transformer | Transformation completed successfully.
+2026-09-08 16:19:00,482 | INFO | etl.loader | Starting data loading process.
+2026-09-08 16:19:00,527 | INFO | etl.loader | Inserted new source: Adzuna
+2026-09-08 16:19:00,532 | INFO | etl.loader | Inserted 19 new company(s).
+2026-09-08 16:19:00,543 | INFO | etl.loader | Inserted 20 new locations
+2026-09-08 16:19:00,554 | INFO | etl.loader | Inserted 6 new categories
+2026-09-08 16:19:00,559 | INFO | etl.loader | Built company lookup with 19 entries.
+2026-09-08 16:19:00,560 | INFO | etl.loader | Built location lookup with 20 entries.
+2026-09-08 16:19:00,561 | INFO | etl.loader | Built category lookup with 6 entries.
+2026-09-08 16:19:00,561 | INFO | etl.loader | Built source lookup with 1 entries.
+2026-09-08 16:19:00,565 | INFO | etl.loader | Inserted 20 new jobs.
+2026-09-08 16:19:00,576 | INFO | etl.loader | Data loading completed successfully.
+2026-09-08 16:49:40,876 | INFO | etl.validator | Validated 20 of 20 job records.
+2026-09-08 16:49:40,877 | INFO | etl.transformer | Extracted 20 unique companies.
+2026-09-08 16:49:40,877 | INFO | etl.transformer | Extracted 20 unique locations.
+2026-09-08 16:49:40,877 | INFO | etl.transformer | Extracted 5 unique categories.
+2026-09-08 16:49:40,880 | INFO | etl.transformer | Extracted 20 unique job titles.
+2026-09-08 16:49:40,880 | INFO | etl.transformer | Transformation completed successfully.
+2026-09-08 16:49:40,881 | INFO | etl.loader | Starting data loading process.
+2026-09-08 16:49:40,933 | INFO | etl.loader | Source already exists: Adzuna
+2026-09-08 16:49:40,935 | INFO | etl.loader | Inserted 16 new company(s).
+2026-09-08 16:49:40,945 | INFO | etl.loader | Inserted 19 new locations
+2026-09-08 16:49:40,954 | INFO | etl.loader | Inserted 2 new categories
+2026-09-08 16:49:40,957 | INFO | etl.loader | Built company lookup with 35 entries.
+2026-09-08 16:49:40,958 | INFO | etl.loader | Built location lookup with 39 entries.
+2026-09-08 16:49:40,959 | INFO | etl.loader | Built category lookup with 8 entries.
+2026-09-08 16:49:40,960 | INFO | etl.loader | Built source lookup with 1 entries.
+2026-09-08 16:49:40,966 | INFO | etl.loader | Inserted 20 new jobs.
+2026-09-08 16:49:40,976 | INFO | etl.loader | Data loading completed successfully.

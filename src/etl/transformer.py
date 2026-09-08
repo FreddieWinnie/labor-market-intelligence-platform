@@ -86,8 +86,8 @@ class Transformer:
             if category_tag not in unique_categories:
 
                 unique_categories[category_tag] ={
-                    "tag": category_tag,
-                    "label": category_name
+                    "category_tag": category_tag,
+                    "category_name": category_name
                 }
         self.logger.info(
             f"Extracted {len(unique_categories)} unique categories."
@@ -116,9 +116,9 @@ class Transformer:
             )
 
             unique_jobs.append ({
-                "id" : ["job_id"],
-                "title" : ["job_title"],
-                "description" :["job_description"],
+                "job_id": job["id"],
+                "title": job["title"],
+                "description" :job["description"],
                 "salary_min": salary_min,
                 "salary_max": salary_max,
                 "salary_average": salary_average,

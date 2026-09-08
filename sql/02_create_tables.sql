@@ -23,12 +23,12 @@ CREATE TABLE IF NOT EXISTS companies (
 
 CREATE TABLE IF NOT EXISTS locations (
   location_id INT AUTO_INCREMENT PRIMARY KEY,
-  country VARCHAR(100) NOT NULL UNIQUE,
+  country VARCHAR(100) NOT NULL,
   state VARCHAR(100),
   county VARCHAR(100),
   city VARCHAR(100),
 
-  display_name VARCHAR(255),
+  display_name VARCHAR(255) NOT NULL UNIQUE,
 
   latitude DECIMAL(10,6),
   longitude DECIMAL(10,6),
@@ -64,7 +64,7 @@ CREATE TABLE IF NOT EXISTS jobs (
   
   redirect_url TEXT,
   adref TEXT,
-  extraction_timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
+  extraction_timestamp DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
   company_id INT NOT NULL,
   location_id INT NOT NULL,
@@ -88,3 +88,23 @@ CREATE TABLE IF NOT EXISTS jobs (
     REFERENCES sources(source_id)
   
 );
+ALTER TABLE locations
+DROP INDEX country;
+
+SHOW CREATE TABLE jobs;
+
+SELECT DATABASE();
+SHOW INDEX FROM locations;
+
+SHOW CREATE TABLE locations;
+
+ALTER TABLE jobs
+MODIFY COLUMN job_id VARCHAR(20) NOT NULL;
+
+
+
+
+
+
+
+

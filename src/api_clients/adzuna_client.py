@@ -14,10 +14,6 @@ class AdzunaClient:
             )
         self.session = requests.Session()
 
-    """def test_connection(self):
-        print("Adzuna Client initialized successfully.")
-        print(f"App ID: {self.app_id}")"""
-
     def search_jobs(self, country: str = "us", page: int = 1, results_per_page: int = 10):
         endpoint = (
             f"{self.BASE_URL}/{country}/search/{page}"

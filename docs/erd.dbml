@@ -19,7 +19,7 @@ Table companies {
 Table locations {
   location_id int [pk, increment]
 
-  country varchar(100) [not null, unique]
+  country varchar(100) [not null]
   state varchar(100)
   county varchar(100)
   city varchar(100)
@@ -63,8 +63,8 @@ Table jobs {
   redirect_url text
   adref text
 
-  extraction_timestamp datetime
-  is_active boolean
+  extraction_timestamp datetime not null default current_timestamp
+  is_active boolean not null not null default True
 
   company_id int [not null]
   location_id int [not null]
