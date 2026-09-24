@@ -1,5 +1,3 @@
-from logging import Logger
-
 from sqlalchemy.orm import Session
 from utils.logger import get_logger
 from database.connection import engine
@@ -7,7 +5,7 @@ from sqlalchemy import select
 from database.models import (Source, Company, Location, Category, Job)
 
 
-class Loader():
+class Loader:
     def __init__(self):
         self.logger = get_logger(__name__)
         self.engine = engine
@@ -66,7 +64,7 @@ class Loader():
             )
 
 
-    def _load_companies(self, session:Session, companies: list) -> None:
+    def _load_companies(self, session:Session, companies: list) -> dict:
 
         existing_companies = {
             company.company_name
@@ -94,7 +92,7 @@ class Loader():
             )
         
         
-    def _load_locations(self, session: Session, locations: list) -> None:
+    def _load_locations(self, session: Session, locations: list) -> dict:
 
         existing_locations ={
             location.display_name
@@ -129,7 +127,7 @@ class Loader():
             )
 
 
-    def _load_categories(self, session:Session, categories: list)-> None:
+    def _load_categories(self, session:Session, categories: list)-> dict:
 
         existing_categories = {
             category.category_tag
@@ -163,7 +161,7 @@ class Loader():
             )
         
 
-    def _build_source_lookup(self, session:Session)-> None:
+    def _build_source_lookup(self, session:Session)-> dict:
 
         source_lookup ={
             source.source_name: source.source_id
@@ -177,7 +175,7 @@ class Loader():
         )
         return source_lookup
 
-    def _build_company_lookup(self, session:Session)-> None:
+    def _build_company_lookup(self, session:Session)-> dict:
 
         company_lookup ={
             company.company_name: company.company_id
@@ -191,7 +189,7 @@ class Loader():
         )
         return company_lookup
 
-    def _build_location_lookup(self, session: Session)->None:
+    def _build_location_lookup(self, session: Session)->dict:
 
         location_lookup = {
             location.display_name: location.location_id
@@ -205,7 +203,7 @@ class Loader():
         )
         return location_lookup
 
-    def _build_category_lookup(self, session: Session)-> None:
+    def _build_category_lookup(self, session: Session)-> dict:
 
         category_lookup = {
             category.category_tag: category.category_id
@@ -226,21 +224,77 @@ class Loader():
                    category_lookup: dict, 
                    source_lookup: dict
                    )-> None:
-
+        
+        incoming_job_ids = [
+        job["job_id"]
+        for job in jobs
+        ]
         existing_jobs = {
-
-            job.job_id
+            job.job_id: job
 
             for job in session.scalars(
-                select(Job)
-            )
-            
+                select(Job).where(
+                    Job.job_id.in_(incoming_job_ids))
+            )  
         }
         inserted = 0
+        updated = 0
+        unchanged = 0
 
         for job in jobs:
+            company_id = company_lookup[job["company_name"]]
+            location_id = location_lookup[job["location_display_name"]]
+            category_id = category_lookup[job["category_tag"]]
+            source_id = source_lookup[job["source_name"]]
 
             if job["job_id"] in existing_jobs:
+                existing_job = existing_jobs[job["job_id"]]
+                has_changed = False
+
+                if existing_job.title != job["title"]:
+                    existing_job.title = job["title"]
+                    has_changed = True
+
+                if existing_job.description != job["description"]:
+                    existing_job.description = job["description"]
+                    has_changed = True
+
+                if existing_job.salary_min != job["salary_min"]:
+                    existing_job.salary_min = job["salary_min"]
+                    has_changed = True
+
+                if existing_job.salary_max != job["salary_max"]:
+                    existing_job.salary_max = job["salary_max"]
+                    has_changed = True
+
+                if existing_job.salary_average != job["salary_average"]:
+                    existing_job.salary_average = job["salary_average"]
+                    has_changed = True
+
+                if existing_job.salary_predicted != job["salary_predicted"]:
+                    existing_job.salary_predicted = job["salary_predicted"]
+                    has_changed = True
+
+                if existing_job.contract_type != job["contract_type"]:
+                    existing_job.contract_type = job["contract_type"]
+                    has_changed = True
+
+                if existing_job.contract_time != job["contract_time"]:
+                    existing_job.contract_time = job["contract_time"]
+                    has_changed = True
+
+                if existing_job.redirect_url != job["redirect_url"]:
+                    existing_job.redirect_url = job["redirect_url"]
+                    has_changed = True
+
+                if existing_job.adref != job["adref"]:
+                    existing_job.adref = job["adref"]
+                    has_changed = True
+
+                if has_changed:
+                   updated += 1
+                else:
+                   unchanged += 1
                 continue
 
             company_id = company_lookup[
@@ -276,14 +330,14 @@ class Loader():
                      source_id = source_id
                 )
             )
-            existing_jobs.add(
-                job["job_id"]
-              )
+        
             inserted += 1
-
         self.logger.info(
-        f"Inserted {inserted} new jobs."
-                  )
+    f"Jobs processed: "
+    f"{inserted} inserted, "
+    f"{updated} updated, "
+    f"{unchanged} unchanged."
+)
         
 
 
