@@ -111,8 +111,7 @@ class Transformer:
             created_date = None
             if job.get("created"):
                 created_date = datetime.strptime(
-                job["created"],
-                "%Y-%m-%dT%H:%M:%SZ",
+                job["created"], "%Y-%m-%dT%H:%M:%SZ"
             )
 
             unique_jobs.append ({
@@ -138,7 +137,7 @@ class Transformer:
                 "source_name": "Adzuna",
                 })
         self.logger.info(
-            f"Extracted {len(unique_jobs)} unique job titles."
+            f"Extracted {len(unique_jobs)} unique jobs."
         )
         return list(unique_jobs)
 

@@ -1930,3 +1930,692 @@ sqlalchemy.exc.DataError: (pymysql.err.DataError) (1264, "Out of range value for
 2026-09-08 16:49:40,960 | INFO | etl.loader | Built source lookup with 1 entries.
 2026-09-08 16:49:40,966 | INFO | etl.loader | Inserted 20 new jobs.
 2026-09-08 16:49:40,976 | INFO | etl.loader | Data loading completed successfully.
+2026-09-14 11:22:18,758 | INFO | __main__ | Starting ETL pipeline...
+2026-09-14 11:22:18,759 | INFO | etl.extractor | Extracting jobs from Adzuna (country=us, page=1)
+2026-09-14 11:22:21,642 | ERROR | __main__ | Pipeline failed: 'builtin_function_or_method' object is not subscriptable
+Traceback (most recent call last):
+  File "D:\Portfolio\labor-market-intelligence-platform\src\main.py", line 18, in run_etl_pipeline
+    jobs = extractor.extract_jobs(
+        country="us",
+        page=1,
+        results_per_page=20,
+        )
+  File "D:\Portfolio\labor-market-intelligence-platform\src\etl\extractor.py", line 28, in extract_jobs
+    jobs = response.get["results"]
+           ~~~~~~~~~~~~^^^^^^^^^^^
+TypeError: 'builtin_function_or_method' object is not subscriptable
+2026-09-14 11:27:34,775 | INFO | __main__ | Starting ETL pipeline...
+2026-09-14 11:27:34,776 | INFO | etl.extractor | Extracting jobs from Adzuna (country=us, page=1)
+2026-09-14 11:27:37,140 | INFO | etl.extractor | Retrieved 20 jobs.
+2026-09-14 11:27:37,141 | INFO | etl.validator | Validated 20 of 20 job records.
+2026-09-14 11:27:37,141 | INFO | etl.transformer | Extracted 17 unique companies.
+2026-09-14 11:27:37,141 | INFO | etl.transformer | Extracted 20 unique locations.
+2026-09-14 11:27:37,141 | INFO | etl.transformer | Extracted 5 unique categories.
+2026-09-14 11:27:37,143 | INFO | etl.transformer | Extracted 20 unique job titles.
+2026-09-14 11:27:37,144 | INFO | etl.transformer | Transformation completed successfully.
+2026-09-14 11:27:37,144 | INFO | etl.loader | Starting data loading process.
+2026-09-14 11:27:41,261 | ERROR | etl.loader | Database loading failed: (pymysql.err.OperationalError) (2003, "Can't connect to MySQL server on 'localhost' ([WinError 10061] No connection could be made because the target machine actively refused it)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Traceback (most recent call last):
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\connections.py", line 682, in connect
+    sock = socket.create_connection(
+        (self.host, self.port), self.connect_timeout, **kwargs
+    )
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\socket.py", line 870, in create_connection
+    raise exceptions[0]
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\socket.py", line 855, in create_connection
+    sock.connect(sa)
+    ~~~~~~~~~~~~^^^^
+ConnectionRefusedError: [WinError 10061] No connection could be made because the target machine actively refused it
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 144, in __init__
+    self._dbapi_connection = engine.raw_connection()
+                             ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 3319, in raw_connection
+    return self.pool.connect()
+           ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\pool\base.py", line 448, in connect
+    return _ConnectionFairy._checkout(self)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\pool\base.py", line 1272, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\pool\base.py", line 712, in checkout
+    rec = pool._do_get()
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\pool\impl.py", line 178, in _do_get
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 122, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\pool\impl.py", line 176, in _do_get
+    return self._create_connection()
+           ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\pool\base.py", line 389, in _create_connection
+    return _ConnectionRecord(self)
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\pool\base.py", line 674, in __init__
+    self.__connect()
+    ~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\pool\base.py", line 900, in __connect
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 122, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\pool\base.py", line 896, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+                                         ~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\create.py", line 667, in connect
+    return dialect.connect(*cargs_tup, **cparams)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\default.py", line 630, in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\connections.py", line 372, in __init__
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\connections.py", line 744, in connect
+    raise exc
+pymysql.err.OperationalError: (2003, "Can't connect to MySQL server on 'localhost' ([WinError 10061] No connection could be made because the target machine actively refused it)")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Portfolio\labor-market-intelligence-platform\src\etl\loader.py", line 20, in load
+    self._load_sources(session)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\Portfolio\labor-market-intelligence-platform\src\etl\loader.py", line 53, in _load_sources
+    existing_source = session.scalar(
+        select(Source).where(Source.source_name == source_name)
+    )
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\session.py", line 2421, in scalar
+    return self._execute_internal(
+           ~~~~~~~~~~~~~~~~~~~~~~^
+        statement,
+        ^^^^^^^^^^
+    ...<4 lines>...
+        **kw,
+        ^^^^^
+    )
+    ^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\session.py", line 2261, in _execute_internal
+    conn = self._connection_for_bind(bind)
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\session.py", line 2113, in _connection_for_bind
+    return trans._connection_for_bind(engine, execution_options)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<string>", line 2, in _connection_for_bind
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\state_changes.py", line 137, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\session.py", line 1191, in _connection_for_bind
+    conn = bind.connect()
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 3295, in connect
+    return self._connection_cls(self)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 146, in __init__
+    Connection._handle_dbapi_exception_noconnection(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        err, dialect, engine
+        ^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 2450, in _handle_dbapi_exception_noconnection
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 144, in __init__
+    self._dbapi_connection = engine.raw_connection()
+                             ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 3319, in raw_connection
+    return self.pool.connect()
+           ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\pool\base.py", line 448, in connect
+    return _ConnectionFairy._checkout(self)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\pool\base.py", line 1272, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\pool\base.py", line 712, in checkout
+    rec = pool._do_get()
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\pool\impl.py", line 178, in _do_get
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 122, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\pool\impl.py", line 176, in _do_get
+    return self._create_connection()
+           ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\pool\base.py", line 389, in _create_connection
+    return _ConnectionRecord(self)
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\pool\base.py", line 674, in __init__
+    self.__connect()
+    ~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\pool\base.py", line 900, in __connect
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 122, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\pool\base.py", line 896, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+                                         ~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\create.py", line 667, in connect
+    return dialect.connect(*cargs_tup, **cparams)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\default.py", line 630, in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\connections.py", line 372, in __init__
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\connections.py", line 744, in connect
+    raise exc
+sqlalchemy.exc.OperationalError: (pymysql.err.OperationalError) (2003, "Can't connect to MySQL server on 'localhost' ([WinError 10061] No connection could be made because the target machine actively refused it)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2026-09-14 11:27:41,352 | ERROR | __main__ | Pipeline failed: (pymysql.err.OperationalError) (2003, "Can't connect to MySQL server on 'localhost' ([WinError 10061] No connection could be made because the target machine actively refused it)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Traceback (most recent call last):
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\connections.py", line 682, in connect
+    sock = socket.create_connection(
+        (self.host, self.port), self.connect_timeout, **kwargs
+    )
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\socket.py", line 870, in create_connection
+    raise exceptions[0]
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\socket.py", line 855, in create_connection
+    sock.connect(sa)
+    ~~~~~~~~~~~~^^^^
+ConnectionRefusedError: [WinError 10061] No connection could be made because the target machine actively refused it
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 144, in __init__
+    self._dbapi_connection = engine.raw_connection()
+                             ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 3319, in raw_connection
+    return self.pool.connect()
+           ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\pool\base.py", line 448, in connect
+    return _ConnectionFairy._checkout(self)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\pool\base.py", line 1272, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\pool\base.py", line 712, in checkout
+    rec = pool._do_get()
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\pool\impl.py", line 178, in _do_get
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 122, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\pool\impl.py", line 176, in _do_get
+    return self._create_connection()
+           ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\pool\base.py", line 389, in _create_connection
+    return _ConnectionRecord(self)
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\pool\base.py", line 674, in __init__
+    self.__connect()
+    ~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\pool\base.py", line 900, in __connect
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 122, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\pool\base.py", line 896, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+                                         ~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\create.py", line 667, in connect
+    return dialect.connect(*cargs_tup, **cparams)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\default.py", line 630, in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\connections.py", line 372, in __init__
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\connections.py", line 744, in connect
+    raise exc
+pymysql.err.OperationalError: (2003, "Can't connect to MySQL server on 'localhost' ([WinError 10061] No connection could be made because the target machine actively refused it)")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Portfolio\labor-market-intelligence-platform\src\main.py", line 31, in run_etl_pipeline
+    loader.load(transformed_data)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "D:\Portfolio\labor-market-intelligence-platform\src\etl\loader.py", line 20, in load
+    self._load_sources(session)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\Portfolio\labor-market-intelligence-platform\src\etl\loader.py", line 53, in _load_sources
+    existing_source = session.scalar(
+        select(Source).where(Source.source_name == source_name)
+    )
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\session.py", line 2421, in scalar
+    return self._execute_internal(
+           ~~~~~~~~~~~~~~~~~~~~~~^
+        statement,
+        ^^^^^^^^^^
+    ...<4 lines>...
+        **kw,
+        ^^^^^
+    )
+    ^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\session.py", line 2261, in _execute_internal
+    conn = self._connection_for_bind(bind)
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\session.py", line 2113, in _connection_for_bind
+    return trans._connection_for_bind(engine, execution_options)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<string>", line 2, in _connection_for_bind
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\state_changes.py", line 137, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\session.py", line 1191, in _connection_for_bind
+    conn = bind.connect()
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 3295, in connect
+    return self._connection_cls(self)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 146, in __init__
+    Connection._handle_dbapi_exception_noconnection(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        err, dialect, engine
+        ^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 2450, in _handle_dbapi_exception_noconnection
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 144, in __init__
+    self._dbapi_connection = engine.raw_connection()
+                             ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 3319, in raw_connection
+    return self.pool.connect()
+           ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\pool\base.py", line 448, in connect
+    return _ConnectionFairy._checkout(self)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\pool\base.py", line 1272, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\pool\base.py", line 712, in checkout
+    rec = pool._do_get()
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\pool\impl.py", line 178, in _do_get
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 122, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\pool\impl.py", line 176, in _do_get
+    return self._create_connection()
+           ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\pool\base.py", line 389, in _create_connection
+    return _ConnectionRecord(self)
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\pool\base.py", line 674, in __init__
+    self.__connect()
+    ~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\pool\base.py", line 900, in __connect
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 122, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\pool\base.py", line 896, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+                                         ~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\create.py", line 667, in connect
+    return dialect.connect(*cargs_tup, **cparams)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\default.py", line 630, in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\connections.py", line 372, in __init__
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\connections.py", line 744, in connect
+    raise exc
+sqlalchemy.exc.OperationalError: (pymysql.err.OperationalError) (2003, "Can't connect to MySQL server on 'localhost' ([WinError 10061] No connection could be made because the target machine actively refused it)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2026-09-14 11:33:02,146 | INFO | __main__ | Starting ETL pipeline...
+2026-09-14 11:33:02,147 | INFO | etl.extractor | Extracting jobs from Adzuna (country=us, page=1)
+2026-09-14 11:33:05,342 | INFO | etl.extractor | Retrieved 20 jobs.
+2026-09-14 11:33:05,342 | INFO | etl.validator | Validated 20 of 20 job records.
+2026-09-14 11:33:05,343 | INFO | etl.transformer | Extracted 18 unique companies.
+2026-09-14 11:33:05,343 | INFO | etl.transformer | Extracted 20 unique locations.
+2026-09-14 11:33:05,343 | INFO | etl.transformer | Extracted 5 unique categories.
+2026-09-14 11:33:05,345 | INFO | etl.transformer | Extracted 20 unique job titles.
+2026-09-14 11:33:05,345 | INFO | etl.transformer | Transformation completed successfully.
+2026-09-14 11:33:05,345 | INFO | etl.loader | Starting data loading process.
+2026-09-14 11:33:05,430 | INFO | etl.loader | Source already exists: Adzuna
+2026-09-14 11:33:05,436 | INFO | etl.loader | Inserted 14 new company(s).
+2026-09-14 11:33:05,452 | INFO | etl.loader | Inserted 19 new locations
+2026-09-14 11:33:05,464 | INFO | etl.loader | Inserted 2 new categories
+2026-09-14 11:33:05,467 | INFO | etl.loader | Built company lookup with 49 entries.
+2026-09-14 11:33:05,469 | INFO | etl.loader | Built location lookup with 58 entries.
+2026-09-14 11:33:05,470 | INFO | etl.loader | Built category lookup with 10 entries.
+2026-09-14 11:33:05,472 | INFO | etl.loader | Built source lookup with 1 entries.
+2026-09-14 11:33:05,480 | INFO | etl.loader | Inserted 20 new jobs.
+2026-09-14 11:33:05,492 | INFO | etl.loader | Data loading completed successfully.
+2026-09-14 11:33:05,492 | INFO | __main__ | ETL Pipeline completed successfully.
+2026-09-14 11:33:05,493 | INFO | __main__ | Execution Time: 0:00:03.346114
+2026-09-14 11:48:33,934 | INFO | __main__ | Starting ETL pipeline...
+2026-09-14 11:48:33,935 | INFO | etl.extractor | Extracting jobs from Adzuna (country=us, page=1)
+2026-09-14 11:48:37,752 | INFO | etl.extractor | Retrieved 20 jobs.
+2026-09-14 11:48:37,752 | INFO | etl.validator | Validated 20 of 20 job records.
+2026-09-14 11:48:37,753 | INFO | etl.transformer | Extracted 19 unique companies.
+2026-09-14 11:48:37,753 | INFO | etl.transformer | Extracted 20 unique locations.
+2026-09-14 11:48:37,753 | INFO | etl.transformer | Extracted 5 unique categories.
+2026-09-14 11:48:37,755 | INFO | etl.transformer | Extracted 20 unique job titles.
+2026-09-14 11:48:37,755 | INFO | etl.transformer | Transformation completed successfully.
+2026-09-14 11:48:37,755 | INFO | etl.loader | Starting data loading process.
+2026-09-14 11:48:37,789 | INFO | etl.loader | Source already exists: Adzuna
+2026-09-14 11:48:37,792 | INFO | etl.loader | Inserted 13 new company(s).
+2026-09-14 11:48:37,800 | INFO | etl.loader | Inserted 18 new locations
+2026-09-14 11:48:37,811 | INFO | etl.loader | Inserted 0 new categories
+2026-09-14 11:48:37,812 | INFO | etl.loader | Built company lookup with 62 entries.
+2026-09-14 11:48:37,814 | INFO | etl.loader | Built location lookup with 76 entries.
+2026-09-14 11:48:37,815 | INFO | etl.loader | Built category lookup with 10 entries.
+2026-09-14 11:48:37,816 | INFO | etl.loader | Built source lookup with 1 entries.
+2026-09-14 11:48:37,821 | INFO | etl.loader | Inserted 20 new jobs.
+2026-09-14 11:48:37,835 | INFO | etl.loader | Data loading completed successfully.
+2026-09-14 11:48:37,836 | INFO | __main__ | ETL Pipeline completed successfully.
+2026-09-14 11:48:37,836 | INFO | __main__ | Execution Time: 0:00:03.901428
+2026-09-14 14:03:15,354 | INFO | etl.pipeline | Starting ETL pipeline...
+2026-09-14 14:03:15,360 | INFO | etl.extractor | Extracting jobs from Adzuna (country=us, page=1)
+2026-09-14 14:03:20,004 | INFO | etl.extractor | Retrieved 20 jobs.
+2026-09-14 14:03:20,004 | INFO | etl.validator | Validated 20 of 20 job records.
+2026-09-14 14:03:20,004 | INFO | etl.transformer | Extracted 19 unique companies.
+2026-09-14 14:03:20,005 | INFO | etl.transformer | Extracted 20 unique locations.
+2026-09-14 14:03:20,005 | INFO | etl.transformer | Extracted 5 unique categories.
+2026-09-14 14:03:20,008 | INFO | etl.transformer | Extracted 20 unique job titles.
+2026-09-14 14:03:20,008 | INFO | etl.transformer | Transformation completed successfully.
+2026-09-14 14:03:20,008 | INFO | etl.loader | Starting data loading process.
+2026-09-14 14:03:20,063 | INFO | etl.loader | Source already exists: Adzuna
+2026-09-14 14:03:20,066 | INFO | etl.loader | Inserted 15 new company(s).
+2026-09-14 14:03:20,078 | INFO | etl.loader | Inserted 20 new locations
+2026-09-14 14:03:20,088 | INFO | etl.loader | Inserted 0 new categories
+2026-09-14 14:03:20,090 | INFO | etl.loader | Built company lookup with 77 entries.
+2026-09-14 14:03:20,093 | INFO | etl.loader | Built location lookup with 96 entries.
+2026-09-14 14:03:20,094 | INFO | etl.loader | Built category lookup with 10 entries.
+2026-09-14 14:03:20,095 | INFO | etl.loader | Built source lookup with 1 entries.
+2026-09-14 14:03:20,102 | INFO | etl.loader | Inserted 20 new jobs.
+2026-09-14 14:03:20,120 | INFO | etl.loader | Data loading completed successfully.
+2026-09-14 14:03:20,121 | INFO | etl.pipeline | ETL pipeline completed successfully.
+2026-09-14 14:03:20,121 | INFO | etl.pipeline | Execution Time: 0:00:04.766207
+2026-09-14 14:06:11,470 | INFO | etl.pipeline | Starting ETL pipeline...
+2026-09-14 14:06:11,470 | INFO | etl.extractor | Extracting jobs from Adzuna (country=us, page=1)
+2026-09-14 14:06:17,643 | INFO | etl.extractor | Retrieved 20 jobs.
+2026-09-14 14:06:17,644 | INFO | etl.validator | Validated 20 of 20 job records.
+2026-09-14 14:06:17,644 | INFO | etl.transformer | Extracted 15 unique companies.
+2026-09-14 14:06:17,644 | INFO | etl.transformer | Extracted 20 unique locations.
+2026-09-14 14:06:17,644 | INFO | etl.transformer | Extracted 5 unique categories.
+2026-09-14 14:06:17,646 | INFO | etl.transformer | Extracted 20 unique job titles.
+2026-09-14 14:06:17,646 | INFO | etl.transformer | Transformation completed successfully.
+2026-09-14 14:06:17,646 | INFO | etl.loader | Starting data loading process.
+2026-09-14 14:06:17,683 | INFO | etl.loader | Source already exists: Adzuna
+2026-09-14 14:06:17,686 | INFO | etl.loader | Inserted 7 new company(s).
+2026-09-14 14:06:17,693 | INFO | etl.loader | Inserted 18 new locations
+2026-09-14 14:06:17,702 | INFO | etl.loader | Inserted 1 new categories
+2026-09-14 14:06:17,727 | INFO | etl.loader | Built company lookup with 84 entries.
+2026-09-14 14:06:17,731 | INFO | etl.loader | Built location lookup with 114 entries.
+2026-09-14 14:06:17,732 | INFO | etl.loader | Built category lookup with 11 entries.
+2026-09-14 14:06:17,733 | INFO | etl.loader | Built source lookup with 1 entries.
+2026-09-14 14:06:17,738 | INFO | etl.loader | Inserted 20 new jobs.
+2026-09-14 14:06:17,750 | INFO | etl.loader | Data loading completed successfully.
+2026-09-14 14:06:17,750 | INFO | etl.pipeline | ETL pipeline completed successfully.
+2026-09-14 14:06:17,750 | INFO | etl.pipeline | Execution Time: 0:00:06.280282
+2026-09-24 10:47:41,236 | INFO | __main__ | Starting ETL pipeline.....
+2026-09-24 10:47:41,237 | ERROR | __main__ | ETL pipeline failed: Extractor.extract_jobs() got an unexpected keyword argument 'page'. Did you mean 'pages'?
+2026-09-24 10:53:10,911 | INFO | __main__ | Starting ETL pipeline.....
+2026-09-24 10:53:10,912 | INFO | etl.extractor | Extracting jobs from Adzuna (country=us, page=1)
+2026-09-24 10:53:13,750 | INFO | etl.extractor | Extracting jobs from Adzuna (country=us, page=2)
+2026-09-24 10:53:15,168 | INFO | etl.extractor | Extracting jobs from Adzuna (country=us, page=3)
+2026-09-24 10:53:16,684 | INFO | etl.extractor | Extracting jobs from Adzuna (country=us, page=4)
+2026-09-24 10:53:18,335 | INFO | etl.extractor | Extracting jobs from Adzuna (country=us, page=5)
+2026-09-24 10:53:19,909 | ERROR | __main__ | ETL pipeline failed: cannot use 'tuple' as a dict key (unhashable type: 'list')
+2026-09-24 10:56:13,231 | INFO | __main__ | Starting ETL pipeline.....
+2026-09-24 10:56:13,232 | INFO | etl.extractor | Extracting jobs from Adzuna (country=us, page=1)
+2026-09-24 10:56:15,008 | INFO | etl.extractor | Extracting jobs from Adzuna (country=us, page=2)
+2026-09-24 10:56:15,618 | INFO | etl.extractor | Extracting jobs from Adzuna (country=us, page=3)
+2026-09-24 10:56:16,162 | INFO | etl.extractor | Extracting jobs from Adzuna (country=us, page=4)
+2026-09-24 10:56:16,671 | INFO | etl.extractor | Extracting jobs from Adzuna (country=us, page=5)
+2026-09-24 10:56:17,274 | INFO | etl.extractor | Retrieved 20 jobs.
+2026-09-24 10:56:17,277 | INFO | etl.extractor | Extracted 20 jobs in total.
+2026-09-24 10:56:17,278 | INFO | etl.validator | Validated 20 of 20 job records.
+2026-09-24 10:56:17,280 | INFO | etl.transformer | Extracted 17 unique companies.
+2026-09-24 10:56:17,282 | INFO | etl.transformer | Extracted 20 unique locations.
+2026-09-24 10:56:17,290 | INFO | etl.transformer | Extracted 6 unique categories.
+2026-09-24 10:56:17,316 | INFO | etl.transformer | Extracted 20 unique job titles.
+2026-09-24 10:56:17,320 | INFO | etl.transformer | Transformation completed successfully.
+2026-09-24 10:56:17,322 | INFO | etl.loader | Starting data loading process.
+2026-09-24 10:56:21,562 | ERROR | etl.loader | Database loading failed: (pymysql.err.OperationalError) (2003, "Can't connect to MySQL server on 'localhost' ([WinError 10061] No connection could be made because the target machine actively refused it)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Traceback (most recent call last):
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\connections.py", line 682, in connect
+    sock = socket.create_connection(
+        (self.host, self.port), self.connect_timeout, **kwargs
+    )
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\socket.py", line 870, in create_connection
+    raise exceptions[0]
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\socket.py", line 855, in create_connection
+    sock.connect(sa)
+    ~~~~~~~~~~~~^^^^
+ConnectionRefusedError: [WinError 10061] No connection could be made because the target machine actively refused it
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 144, in __init__
+    self._dbapi_connection = engine.raw_connection()
+                             ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 3319, in raw_connection
+    return self.pool.connect()
+           ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\pool\base.py", line 448, in connect
+    return _ConnectionFairy._checkout(self)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\pool\base.py", line 1272, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\pool\base.py", line 712, in checkout
+    rec = pool._do_get()
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\pool\impl.py", line 178, in _do_get
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 122, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\pool\impl.py", line 176, in _do_get
+    return self._create_connection()
+           ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\pool\base.py", line 389, in _create_connection
+    return _ConnectionRecord(self)
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\pool\base.py", line 674, in __init__
+    self.__connect()
+    ~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\pool\base.py", line 900, in __connect
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 122, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\pool\base.py", line 896, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+                                         ~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\create.py", line 667, in connect
+    return dialect.connect(*cargs_tup, **cparams)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\default.py", line 630, in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\connections.py", line 372, in __init__
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\connections.py", line 744, in connect
+    raise exc
+pymysql.err.OperationalError: (2003, "Can't connect to MySQL server on 'localhost' ([WinError 10061] No connection could be made because the target machine actively refused it)")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Portfolio\labor-market-intelligence-platform\src\etl\loader.py", line 20, in load
+    self._load_sources(session)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\Portfolio\labor-market-intelligence-platform\src\etl\loader.py", line 53, in _load_sources
+    existing_source = session.scalar(
+        select(Source).where(Source.source_name == source_name)
+    )
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\session.py", line 2421, in scalar
+    return self._execute_internal(
+           ~~~~~~~~~~~~~~~~~~~~~~^
+        statement,
+        ^^^^^^^^^^
+    ...<4 lines>...
+        **kw,
+        ^^^^^
+    )
+    ^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\session.py", line 2261, in _execute_internal
+    conn = self._connection_for_bind(bind)
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\session.py", line 2113, in _connection_for_bind
+    return trans._connection_for_bind(engine, execution_options)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<string>", line 2, in _connection_for_bind
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\state_changes.py", line 137, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\session.py", line 1191, in _connection_for_bind
+    conn = bind.connect()
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 3295, in connect
+    return self._connection_cls(self)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 146, in __init__
+    Connection._handle_dbapi_exception_noconnection(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        err, dialect, engine
+        ^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 2450, in _handle_dbapi_exception_noconnection
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 144, in __init__
+    self._dbapi_connection = engine.raw_connection()
+                             ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 3319, in raw_connection
+    return self.pool.connect()
+           ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\pool\base.py", line 448, in connect
+    return _ConnectionFairy._checkout(self)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\pool\base.py", line 1272, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\pool\base.py", line 712, in checkout
+    rec = pool._do_get()
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\pool\impl.py", line 178, in _do_get
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 122, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\pool\impl.py", line 176, in _do_get
+    return self._create_connection()
+           ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\pool\base.py", line 389, in _create_connection
+    return _ConnectionRecord(self)
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\pool\base.py", line 674, in __init__
+    self.__connect()
+    ~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\pool\base.py", line 900, in __connect
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 122, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\pool\base.py", line 896, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+                                         ~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\create.py", line 667, in connect
+    return dialect.connect(*cargs_tup, **cparams)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\default.py", line 630, in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\connections.py", line 372, in __init__
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pymysql\connections.py", line 744, in connect
+    raise exc
+sqlalchemy.exc.OperationalError: (pymysql.err.OperationalError) (2003, "Can't connect to MySQL server on 'localhost' ([WinError 10061] No connection could be made because the target machine actively refused it)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2026-09-24 10:56:21,848 | ERROR | __main__ | ETL pipeline failed: (pymysql.err.OperationalError) (2003, "Can't connect to MySQL server on 'localhost' ([WinError 10061] No connection could be made because the target machine actively refused it)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2026-09-24 11:02:44,785 | INFO | __main__ | Starting ETL pipeline.....
+2026-09-24 11:02:44,785 | INFO | etl.extractor | Extracting jobs from Adzuna (country=us, page=1)
+2026-09-24 11:02:47,780 | INFO | etl.extractor | Extracting jobs from Adzuna (country=us, page=2)
+2026-09-24 11:02:49,220 | INFO | etl.extractor | Extracting jobs from Adzuna (country=us, page=3)
+2026-09-24 11:02:51,196 | INFO | etl.extractor | Extracting jobs from Adzuna (country=us, page=4)
+2026-09-24 11:02:53,077 | INFO | etl.extractor | Extracting jobs from Adzuna (country=us, page=5)
+2026-09-24 11:02:55,083 | INFO | etl.extractor | Retrieved 20 jobs.
+2026-09-24 11:02:55,084 | INFO | etl.extractor | Extracted 20 jobs in total.
+2026-09-24 11:02:55,085 | INFO | etl.validator | Validated 20 of 20 job records.
+2026-09-24 11:02:55,085 | INFO | etl.transformer | Extracted 17 unique companies.
+2026-09-24 11:02:55,085 | INFO | etl.transformer | Extracted 20 unique locations.
+2026-09-24 11:02:55,086 | INFO | etl.transformer | Extracted 6 unique categories.
+2026-09-24 11:02:55,090 | INFO | etl.transformer | Extracted 20 unique job titles.
+2026-09-24 11:02:55,090 | INFO | etl.transformer | Transformation completed successfully.
+2026-09-24 11:02:55,091 | INFO | etl.loader | Starting data loading process.
+2026-09-24 11:02:55,200 | INFO | etl.loader | Source already exists: Adzuna
+2026-09-24 11:02:55,209 | INFO | etl.loader | Inserted 7 new company(s).
+2026-09-24 11:02:55,231 | INFO | etl.loader | Inserted 20 new locations
+2026-09-24 11:02:55,254 | INFO | etl.loader | Inserted 1 new categories
+2026-09-24 11:02:55,259 | INFO | etl.loader | Built company lookup with 91 entries.
+2026-09-24 11:02:55,263 | INFO | etl.loader | Built location lookup with 134 entries.
+2026-09-24 11:02:55,265 | INFO | etl.loader | Built category lookup with 12 entries.
+2026-09-24 11:02:55,267 | INFO | etl.loader | Built source lookup with 1 entries.
+2026-09-24 11:02:55,277 | INFO | etl.loader | Inserted 20 new jobs.
+2026-09-24 11:02:55,293 | INFO | etl.loader | Data loading completed successfully.
+2026-09-24 11:02:55,294 | INFO | __main__ | ETL pipeline completed successfully.
+2026-09-24 11:02:55,294 | INFO | __main__ | Execution Time: 0:00:10.509024
+2026-09-24 11:05:01,477 | INFO | __main__ | Starting ETL pipeline.....
+2026-09-24 11:05:01,478 | INFO | etl.extractor | Extracting jobs from Adzuna (country=us, page=1)
+2026-09-24 11:05:05,847 | INFO | etl.extractor | Retrieved 20 jobs.
+2026-09-24 11:05:05,847 | INFO | etl.extractor | Extracting jobs from Adzuna (country=us, page=2)
+2026-09-24 11:05:08,507 | INFO | etl.extractor | Retrieved 20 jobs.
+2026-09-24 11:05:08,507 | INFO | etl.extractor | Extracting jobs from Adzuna (country=us, page=3)
+2026-09-24 11:05:11,200 | INFO | etl.extractor | Retrieved 20 jobs.
+2026-09-24 11:05:11,201 | INFO | etl.extractor | Extracting jobs from Adzuna (country=us, page=4)
+2026-09-24 11:05:14,423 | INFO | etl.extractor | Retrieved 20 jobs.
+2026-09-24 11:05:14,424 | INFO | etl.extractor | Extracting jobs from Adzuna (country=us, page=5)
+2026-09-24 11:05:17,196 | INFO | etl.extractor | Retrieved 20 jobs.
+2026-09-24 11:05:17,198 | INFO | etl.extractor | Extracted 100 jobs in total.
+2026-09-24 11:05:17,199 | INFO | etl.validator | Validated 100 of 100 job records.
+2026-09-24 11:05:17,200 | INFO | etl.transformer | Extracted 46 unique companies.
+2026-09-24 11:05:17,201 | INFO | etl.transformer | Extracted 100 unique locations.
+2026-09-24 11:05:17,202 | INFO | etl.transformer | Extracted 8 unique categories.
+2026-09-24 11:05:17,209 | INFO | etl.transformer | Extracted 100 unique job titles.
+2026-09-24 11:05:17,210 | INFO | etl.transformer | Transformation completed successfully.
+2026-09-24 11:05:17,210 | INFO | etl.loader | Starting data loading process.
+2026-09-24 11:05:17,273 | INFO | etl.loader | Source already exists: Adzuna
+2026-09-24 11:05:17,275 | INFO | etl.loader | Inserted 23 new company(s).
+2026-09-24 11:05:17,301 | INFO | etl.loader | Inserted 98 new locations
+2026-09-24 11:05:17,339 | INFO | etl.loader | Inserted 1 new categories
+2026-09-24 11:05:17,342 | INFO | etl.loader | Built company lookup with 114 entries.
+2026-09-24 11:05:17,345 | INFO | etl.loader | Built location lookup with 232 entries.
+2026-09-24 11:05:17,345 | INFO | etl.loader | Built category lookup with 13 entries.
+2026-09-24 11:05:17,347 | INFO | etl.loader | Built source lookup with 1 entries.
+2026-09-24 11:05:17,363 | INFO | etl.loader | Inserted 100 new jobs.
+2026-09-24 11:05:17,403 | INFO | etl.loader | Data loading completed successfully.
+2026-09-24 11:05:17,403 | INFO | __main__ | ETL pipeline completed successfully.
+2026-09-24 11:05:17,403 | INFO | __main__ | Execution Time: 0:00:15.925992
+2026-09-24 11:08:20,717 | INFO | __main__ | Starting ETL pipeline.....
+2026-09-24 11:08:20,717 | INFO | etl.extractor | Extracting jobs from Adzuna (country=us, page=1)
+2026-09-24 11:08:22,739 | INFO | etl.extractor | Retrieved 20 jobs.
+2026-09-24 11:08:22,739 | INFO | etl.extractor | Extracting jobs from Adzuna (country=us, page=2)
+2026-09-24 11:08:23,383 | INFO | etl.extractor | Retrieved 20 jobs.
+2026-09-24 11:08:23,383 | INFO | etl.extractor | Extracting jobs from Adzuna (country=us, page=3)
+2026-09-24 11:08:23,981 | INFO | etl.extractor | Retrieved 20 jobs.
+2026-09-24 11:08:23,981 | INFO | etl.extractor | Extracting jobs from Adzuna (country=us, page=4)
+2026-09-24 11:08:24,644 | INFO | etl.extractor | Retrieved 20 jobs.
+2026-09-24 11:08:24,645 | INFO | etl.extractor | Extracting jobs from Adzuna (country=us, page=5)
+2026-09-24 11:08:25,091 | INFO | etl.extractor | Retrieved 20 jobs.
+2026-09-24 11:08:25,092 | INFO | etl.extractor | Extracted 100 jobs in total.
+2026-09-24 11:08:25,092 | INFO | etl.validator | Validated 100 of 100 job records.
+2026-09-24 11:08:25,093 | INFO | etl.transformer | Extracted 46 unique companies.
+2026-09-24 11:08:25,093 | INFO | etl.transformer | Extracted 100 unique locations.
+2026-09-24 11:08:25,094 | INFO | etl.transformer | Extracted 8 unique categories.
+2026-09-24 11:08:25,099 | INFO | etl.transformer | Extracted 100 unique jobs.
+2026-09-24 11:08:25,099 | INFO | etl.transformer | Transformation completed successfully.
+2026-09-24 11:08:25,100 | INFO | etl.loader | Starting data loading process.
+2026-09-24 11:08:25,200 | INFO | etl.loader | Source already exists: Adzuna
+2026-09-24 11:08:25,203 | INFO | etl.loader | Inserted 0 new company(s).
+2026-09-24 11:08:25,214 | INFO | etl.loader | Inserted 0 new locations
+2026-09-24 11:08:25,218 | INFO | etl.loader | Inserted 0 new categories
+2026-09-24 11:08:25,221 | INFO | etl.loader | Built company lookup with 114 entries.
+2026-09-24 11:08:25,229 | INFO | etl.loader | Built location lookup with 232 entries.
+2026-09-24 11:08:25,232 | INFO | etl.loader | Built category lookup with 13 entries.
+2026-09-24 11:08:25,233 | INFO | etl.loader | Built source lookup with 1 entries.
+2026-09-24 11:08:25,256 | INFO | etl.loader | Inserted 0 new jobs.
+2026-09-24 11:08:25,258 | INFO | etl.loader | Data loading completed successfully.
+2026-09-24 11:08:25,259 | INFO | __main__ | ETL pipeline completed successfully.
+2026-09-24 11:08:25,259 | INFO | __main__ | Execution Time: 0:00:04.542586

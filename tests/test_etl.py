@@ -1,4 +1,4 @@
-from api_clients.adzuna_client import AdzunaClient
+from etl.extractor import Extractor
 from etl.validator import Validator
 from etl.transformer import Transformer
 from etl.loader import Loader
@@ -11,14 +11,12 @@ def main():
 
     print("\nStep 1: Extracting jobs from Adzuna API...")
 
-    client = AdzunaClient()
+    extractor = Extractor()
 
-    response = client.search_jobs(
-        country="us",
-        results_per_page=20,
-    )
-
-    jobs = response["results"]
+    jobs = extractor.extract_jobs(
+    country="us",
+    results_per_page=20,
+           )
 
     print(f"Retrieved {len(jobs)} jobs.")
 
